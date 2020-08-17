@@ -1,6 +1,17 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-footer{
+
+footer.mt-auto{
     background-color: #f5f5f5;
+    margin-top: auto !important;
+}
+
+form{
+    label{
+        margin: 10px 0;
+    }
+    input{
+        border-radius: 20%;
+    }
 }
