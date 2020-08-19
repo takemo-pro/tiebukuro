@@ -12,6 +12,23 @@ form{
         margin: 10px 0;
     }
     input{
-        border-radius: 20%;
+        border-radius: 10px;
     }
+    input.btn{
+        margin-top:20px;
+        width:100%;
+    }
+}
+
+ul{
+    padding:0 0 0 2rem;
+    margin:0;
+}
+
+.alert{
+    margin:20px;
+}
+
+aside{
+    margin:2rem;
 }

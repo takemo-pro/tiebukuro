@@ -1,0 +1,11 @@
+<% set_full_title("#{@user.name}さん") %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user-info">
+      <h1>
+        <%= get_gravatar_img(@user) %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+</div>
