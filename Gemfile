@@ -56,5 +56,5 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '11.5'
+  gem 'pg'
 end
