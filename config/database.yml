@@ -26,5 +26,5 @@ production:
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: pfapp_db
   user_name: takemo
-  host: db-for-mypf.czvny79oltqu.ap-northeast-1.rds.amazonaws.com
+  host: pf-for-take-db.czvny79oltqu.ap-northeast-1.rds.amazonaws.com
   password: <%= ENV['PFAPP_DB_PASSWORD'] %>
