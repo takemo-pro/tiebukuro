@@ -59,4 +59,5 @@ end
 
 group :production do
   gem 'pg'
+  gem 'puma_worker_killer'
 end
