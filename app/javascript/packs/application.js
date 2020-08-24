@@ -10,7 +10,7 @@ require("channels")
 
 //Import bootstrap file
 import 'bootstrap'
-import '../src/application.scss'
+import "../src/application.scss"
 
 //Import fontawesome file
 import '@fortawesome/fontawesome-free/js/all'
