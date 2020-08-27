@@ -1,0 +1,22 @@
+version: 2.1
+orbs:
+  ruby: circleci/ruby@0.1.2
+
+jobs:
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - ""
+      - run: ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "var/www/rails/deploy.sh"
+
+workflows:
+  version: 2.1
+  deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: master
