@@ -10,7 +10,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - f2:f1:26:29:91:ae:dc:e7:30:30:fe:21:90:7a:e2:c1
-      - run: ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "var/www/rails/deploy.sh"
+      - run: ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "/var/www/rails/deploy.sh"
 
 workflows:
   version: 2.1
