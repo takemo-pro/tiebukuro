@@ -22,6 +22,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                           password_confirmation: 'foobar' } }
     end
     follow_redirect!
+    assert is_logged_in?
     assert_template 'users/show'
     assert_select 'div.alert-success'
   end
