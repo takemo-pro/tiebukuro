@@ -5,4 +5,4 @@ bundle install --without development test
 bin/webpack
 rails db:migrate
 
-bundleo exec pumactl start
+bundle exec pumactl start
