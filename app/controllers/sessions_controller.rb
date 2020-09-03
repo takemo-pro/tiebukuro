@@ -1,7 +1,5 @@
 class SessionsController < ApplicationController
-  def new
-
-  end
+  def new; end
 
   def create
     @user = User.find_by(email: params[:session][:email].downcase)
@@ -12,17 +10,15 @@ class SessionsController < ApplicationController
       flash[:success] = 'ログインしました'
       redirect_back_or @user
     else
-      #フラッシュエラーメッセージを表示、newを描画
+      # フラッシュエラーメッセージを表示、newを描画
       flash.now[:danger] = 'メールアドレスかパスワードが正しくありません。'
       render 'new'
     end
   end
 
-
   def destroy
-    #セッションと一時ユーザー変数を消してルートへ
+    # セッションと一時ユーザー変数を消してルートへ
     log_out if logged_in?
     redirect_to root_url
   end
-
 end
