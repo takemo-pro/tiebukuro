@@ -1,0 +1,18 @@
+<% set_full_title("Edit") %>
+<% provide(:subtitle, 'ユーザー情報編集') %>
+<% provide(:submit_text, '更新') %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <%= render 'users/form' %>
+          <div class="gravatar_edit">
+            <%= get_gravatar_img @user %>
+            <a href="https://gravatar.com/emails" target="_blank" rel="noopener">change</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

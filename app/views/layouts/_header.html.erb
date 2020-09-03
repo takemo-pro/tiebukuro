@@ -17,6 +17,7 @@
                 </a>
 
                 <div class="dropdown-menu">
+                    <%= link_to "ユーザー一覧", users_path, class:"dropdown-item" %>
                     <%= link_to "プロフィール", current_user, class:"dropdown-item" %>
                     <%= link_to "プロフィールを編集", edit_user_path(current_user) , class:"dropdown-item" %>
                     <%= link_to "ログアウト", logout_path , method: :delete,  class:"dropdown-item" %>

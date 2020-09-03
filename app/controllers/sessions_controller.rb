@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       log_in @user
       params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
       flash[:success] = 'ログインしました'
-      redirect_to @user
+      redirect_back_or @user
     else
       #フラッシュエラーメッセージを表示、newを描画
       flash.now[:danger] = 'メールアドレスかパスワードが正しくありません。'
