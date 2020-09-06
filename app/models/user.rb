@@ -23,23 +23,33 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, User.digest(remember_token))
   end
 
-  def authenticated?(remember_token)
-    return false if remember_digest.nil? # ダイジェストがないときにはfalse（複数ブラウザ対策）
+  def authenticated?(attribute, token) # トークンが正しいか認証する
+    digest = send("#{attribute}_digest")
+    return false if digest.nil? # ダイジェストがないときにはfalse（複数ブラウザ対策）
 
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    BCrypt::Password.new(digest).is_password?(token)
   end
 
   def forget
     update_attribute(:remember_digest, nil)
   end
 
-  private
-    def create_activation_digest #アクティベーションのトークンとダイジェストを生成、保存する
-      self.activation_token = User.new_token
-      self.activation_digest = User.digest(activation_token)
-    end
+  def activate # ユーザーを有効化する
+    update_columns(activated:true,activated_at:Time.zone.now)
+  end
 
-    def downcase_email #メールアドレスをDB保存前に全て小文字化する（データの統一・唯一性の保持）
-      self.email.downcase!
-    end
+  def send_activation_mail # 有効化メールを送信する
+    UserMailer.account_activation(self).deliver_now
+  end
+
+  private
+
+  def create_activation_digest # アクティベーションのトークンとダイジェストを生成、保存する
+    self.activation_token = User.new_token
+    self.activation_digest = User.digest(activation_token)
+  end
+
+  def downcase_email # メールアドレスをDB保存前に全て小文字化する（データの統一・唯一性の保持）
+    email.downcase!
+  end
 end

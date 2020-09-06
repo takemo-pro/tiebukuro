@@ -1,0 +1,3 @@
+<%= "#{@user.name}様" %>
+Knowteへのユーザー登録を完了させるには以下のリンクにアクセスしてください。
+<%= edit_account_activation_url(@user.activation_token,email:@user.email) %>

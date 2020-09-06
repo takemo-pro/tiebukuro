@@ -43,4 +43,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to root_url
   end
+
+  test 'should redirect edit when not activated' do
+    log_in_as @user
+    @user.update_attribute(:activated, false)
+    get user_path(@user)
+    assert_redirected_to root_url
+  end
 end
