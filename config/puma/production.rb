@@ -1,5 +1,6 @@
 # UNIX Socketへのバインド
 rails_root = "/var/www/rails"
+tmp_path = "#{rails_root}/tmp"
 bind "unix://#{rails_root}/tmp/sockets/puma.sock"
 
 # スレッド数とWorker数の指定
