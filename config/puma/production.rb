@@ -1,6 +1,6 @@
 # UNIX Socketへのバインド
-tmp_path = "#{File.expand_path('../..', __dir__)}/tmp"
-bind "unix://#{tmp_path}/sockets/puma.sock"
+rails_root = "/var/www/rails"
+bind "unix://#{rails_root}/tmp/sockets/puma.sock"
 
 # スレッド数とWorker数の指定
 threads 3, 3

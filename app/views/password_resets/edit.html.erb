@@ -1,0 +1,26 @@
+<% set_full_title("パスワード再設定") %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h5 class="card-title text-center">パスワード再設定</h5>
+          <%= form_with(model: @user,url: password_reset_path(params[:id]),local: true, class: "form-signin") do |f| %>
+            <%= render 'shared/error_messages' %>
+            <%= hidden_field_tag :email, @user.email %>
+            <small>新しいパスワードを入力してください</small>
+            <div class="form-label-group">
+              <%= f.label :password , "新しいパスワード"%>
+              <%= f.password_field :password , class: "form-control"%>
+            </div>
+            <div class="form-label-group">
+              <%= f.label :password_confirmation , "パスワード確認"%>
+              <%= f.password_field :password_confirmation , class: "form-control"%>
+            </div>
+            <%= f.submit "送信", class:"btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
