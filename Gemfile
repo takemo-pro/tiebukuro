@@ -11,7 +11,7 @@ gem 'faker'
 gem 'bcrypt'
 
 #aws-ses-sdk
-gem 'aws-ses', '~> 0.6'
+gem 'aws-sdk-rails'
 # pagination
 gem 'will_paginate'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
