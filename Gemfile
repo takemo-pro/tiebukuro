@@ -7,9 +7,11 @@ gem 'rails-controller-testing'
 # Translate error messages into Japanese
 gem 'rails-i18n'
 # fake text
-gem 'bcrypt'
 gem 'faker'
+gem 'bcrypt'
 
+#aws-ses-sdk
+gem 'aws-ses', '~> 0.6'
 # pagination
 gem 'will_paginate'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

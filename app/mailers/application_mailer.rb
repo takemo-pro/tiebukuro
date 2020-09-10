@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'noreply@knowte.com'
+  default from: 'grandmatch.net <noreply@grandmatch.net>'
   layout 'mailer'
 end
