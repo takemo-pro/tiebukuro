@@ -7,7 +7,7 @@ class UserMailerTest < ActionMailer::TestCase
     mail = UserMailer.account_activation(user)
     assert_equal 'Account activation', mail.subject
     assert_equal [user.email], mail.to
-    assert_equal ['noreply@knowte.com'], mail.from
+    assert_equal ['noreply@grandmatchcom'], mail.from
     # 本文に日本語を含むため、html_partとtext_partにわけてテストする
     # （bodyだとASCIIにエンコードされてマッチしない)
     assert_match user.name, mail.html_part.body.encoded
@@ -24,7 +24,7 @@ class UserMailerTest < ActionMailer::TestCase
     mail = UserMailer.password_reset(user)
     assert_equal 'Account Password reset', mail.subject
     assert_equal [user.email], mail.to
-    assert_equal ['noreply@knowte.com'], mail.from
+    assert_equal ['noreply@grandmatch.com'], mail.from
     assert_match user.reset_token, mail.html_part.body.encoded
     assert_match user.reset_token, mail.text_part.body.encoded
     assert_match CGI.escape(user.email), mail.html_part.body.encoded
