@@ -19,11 +19,12 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.where(activated:true).paginate(page: params[:page])
+    @users = User.where(activated:true).page(params[:page]).per(30)
   end
 
   def show
     @user = User.find(params[:id])
+    @questions = @user.questions.page(params[:page])
     redirect_to root_url and return unless @user.activated?
   end
 
@@ -52,13 +53,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
-  def logged_in_user # ログインしてなかったらログインさせる
-    unless logged_in?
-      store_location
-      flash[:danger] = 'ログインしてください'
-      redirect_to login_url
-    end
-  end
+
 
   def correct_user # 対象外のユーザーはリダイレクトで排除する
     @user = User.find(params[:id])

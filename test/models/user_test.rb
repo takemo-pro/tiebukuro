@@ -69,4 +69,12 @@ class UserTest < ActiveSupport::TestCase
   test 'authenticated? should return false if remember_digest is nil' do
     assert_not @user.authenticated?(:remember, '')
   end
+
+  test 'dependent question should be destroyed' do
+    @user.save
+    @user.questions.create!(content:"hogehoge")
+    assert_difference 'Question.count', -1 do
+      @user.destroy
+    end
+  end
 end

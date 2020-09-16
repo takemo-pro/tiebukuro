@@ -10,6 +10,7 @@ User.create!(name: 'take',
              email: 'take.webengineer@gmail.com',
              password: 'foobar',
              password_confirmation: 'foobar',
+             activated: true,
              admin: true)
 
 99.times do |n|
@@ -18,5 +19,12 @@ User.create!(name: 'take',
   password = 'password'
   User.create!(name: name, email: email,
                password: password,
-               password_confirmation: password)
+               password_confirmation: password,
+               activated: true)
+end
+
+users = User.order(:created_at).take(6)
+50.times do
+  content = Faker::Lorem.sentence(word_count: 5)
+  users.each {|user| user.questions.create!(content: content)}
 end

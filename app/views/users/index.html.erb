@@ -1,9 +1,9 @@
 <%= set_full_title("ユーザー一覧")%>
 <h3 class="users-index text-center">ユーザー一覧</h1>
 <div class="container">
-  <%= will_paginate @users, previous_label: "<", next_label: ">"%>
+  <%= paginate @users %>
   <ul class="users">
       <%= render @users %>
   </ul>
-  <%= will_paginate @users, previous_label: "<", next_label: ">"%>
+  <%= paginate @users %>
 </div>

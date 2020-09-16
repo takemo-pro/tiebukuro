@@ -25,4 +25,12 @@ class ActionDispatch::IntegrationTest
                                           password: password,
                                           remember_me: remember_me } }
   end
+
+  def full_title(page_title='')
+    base_title = 'Grandmatch'
+    if page_title.empty?
+      base_title
+    elsif title = page_title + ' / ' + base_title
+    end
+  end
 end

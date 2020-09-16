@@ -13,10 +13,14 @@ gem 'bcrypt'
 #aws-ses-sdk
 gem 'aws-sdk-rails'
 # pagination
-gem 'will_paginate'
+gem 'kaminari'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
-
+# active_strage validation
+gem 'active_storage_validations' , '~>0.8'
+# resize image file gem
+gem 'image_processing', '1.9.3'
+gem 'mini_magick', '4.9.5'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets

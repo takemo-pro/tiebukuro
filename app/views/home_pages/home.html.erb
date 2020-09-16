@@ -1,8 +1,12 @@
 <% set_full_title("") %>
+<% if logged_in? %>
+    <%= render 'home_pages/questions' %>
+<% else %>
 <div class="jumbotron container">
-    <h1 class="display-4">Knowte</h1>
-    <p class="lead">分からない事を分からないままにしない知識共有サイト</p>
-    <hr class="mr-4">
-    <p>アカウントを作成して質問する。または、アカウントをお持ちの方は<%= link_to "ログイン", "#" %></p>
-    <%= link_to "Sign up!" , signup_path , class:"btn btn-primary btn-lg" %>
+  <h1 class="display-4">Knowte</h1>
+  <p class="lead">分からない事を分からないままにしない知識共有サイト</p>
+  <hr class="mr-4">
+  <p>アカウントを作成して質問する。または、アカウントをお持ちの方は<%= link_to "ログイン", "#" %></p>
+  <%= link_to "Sign up!" , signup_path , class:"btn btn-primary btn-lg" %>
 </div>
+<% end %>
