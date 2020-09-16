@@ -1,0 +1,44 @@
+<div class="row">
+    <%= render 'shared/user_sidebar' %>
+  <div class="col-md-8">
+    <%= form_with(model: @question, local:true) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div class="form-group">
+        <%= f.label :title, "タイトル"%>
+        <%= f.text_field :title, class: "form-control",placeholder:"質問のタイトル" %>
+        <small class="form-text text-muted">質問の内容が簡潔にわかるタイトルをつけると回答がつきやすくなります</small>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :tag, "タグ"%>
+        <%= f.text_field :tag, class: "form-control",placeholder:"タグ" %>
+        <small class="form-text text-muted">タグ付けすることによって回答者が質問をみつけやすくなります</small>
+        <small class="form-text text-muted">半角スペースで区切って入力してください（最大５個まで）</small>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :image, "添付画像" %>
+        <%= f.file_field :image ,class:"form-control-file", accept:"image/jpeg,image/gif,image/png,image/heic,image,tiff" %>
+        <small class="form-text text-muted">画像があれば選択（最大8MBまで）</small>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :content, "本文"%>
+        <%= f.text_area :content, class:"form-control",placeholder:"質問の内容を2000文字以内で入力してください"%>
+      </div>
+
+      <%= f.submit "投稿", class:"btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+//投稿の画像投稿時のファイル容量バリデーション
+  $("#question_image").bind("change", function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 8) {
+      alert("ファイルサイズが大きすぎます。８MB以下のファイルを指定してください。");
+      $("#question_image").val("");
+    }
+  });
+</script>

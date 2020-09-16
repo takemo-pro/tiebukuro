@@ -1,0 +1,19 @@
+<li id="question-<%= question.id %>" class="d-flex">
+  <div>
+    <%= link_to get_gravatar_img(question.user, size: 50), question.user ,class:"d-inline" %>
+  </div>
+    <div>
+      <span class="user"><%= link_to question.user.name, question.user %></span>
+      <span class="content d-block">
+        <%= question.content %>
+      </span>
+        <%= image_tag question.display_image , class:"rounded" if question.image.attached? %>
+      <span class="timestamp">
+        <%= time_ago_in_words(question.created_at) %>前
+      </span>
+      <% if current_user?(question.user) %>
+      <%= link_to "投稿を削除" , question, method: :delete, data:{confirm:"この投稿をに削除しますか？"} %>
+      <% end %>
+    </div>
+</li>
+<hr>

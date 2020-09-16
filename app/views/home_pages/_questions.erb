@@ -1,0 +1,9 @@
+<div class="container home-page">
+    <div class="col-md-8">
+        <h4>最新の質問</h4>
+        <ol class="questions">
+            <%= render @questions %>
+        </ol>
+    </div>
+</div>
+<%= paginate @questions %>
