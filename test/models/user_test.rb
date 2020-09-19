@@ -77,4 +77,33 @@ class UserTest < ActiveSupport::TestCase
       @user.destroy
     end
   end
+
+  test 'should follow and unfollow a user' do
+    take = users(:take)
+    edward = users(:edward)
+    assert_not take.following?(edward)
+    take.follow(edward)
+    assert take.following?(edward)
+    assert edward.followers.include?(take)
+    take.unfollow(edward)
+    assert_not take.following?(edward)
+  end
+
+  test 'feed should have the right posts' do
+    take = users(:take)
+    edward = users(:edward)
+    alphonse = users(:alphonse)
+    #フォロー中のユーザーの投稿が見えるかどうか
+    alphonse.questions.each do |post_following|
+      assert take.feed.include?(post_following)
+    end
+    #自分の投稿は見えるかどうか
+    take.questions.each do |post_self|
+      assert take.feed.include?(post_self)
+    end
+    #フォローしてないユーザーの投稿は見えてはいけない！
+    edward.questions.each do |post_others|
+      assert_not take.feed.include?(post_others)
+    end
+  end
 end

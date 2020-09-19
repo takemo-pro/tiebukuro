@@ -1,6 +1,11 @@
 <% set_full_title("") %>
 <% if logged_in? %>
-    <%= render 'home_pages/questions' %>
+  <div class="row">
+    <%= render 'shared/user_sidebar' %>
+    <div class="col-md-9">
+      <%= render 'home_pages/questions' %>
+    </div>
+  </div>
 <% else %>
 <div class="jumbotron container">
   <h1 class="display-4">Knowte</h1>

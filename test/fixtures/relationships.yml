@@ -1,0 +1,11 @@
+one:
+  follower: take
+  followed: alphonse
+
+two:
+  follower: take
+  followed: roy
+
+three:
+  follower: edward
+  followed: take

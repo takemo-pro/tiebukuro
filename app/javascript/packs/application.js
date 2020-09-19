@@ -14,8 +14,6 @@ require("jquery")
 import "bootstrap"
 import "../src/application.scss"
 
-//Import validation js file
-import "../src/validation"
 //Import fontawesome file
 import '@fortawesome/fontawesome-free/js/all'
 

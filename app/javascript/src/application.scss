@@ -9,7 +9,6 @@
     }
 }
 
-
 hr{
     margin:0.5rem 0;
     border-color:#BBBBBB;
@@ -118,9 +117,13 @@ nav{
             margin:1.5rem 0;
             font-weight:normal;
         }
+        a.btn{
+            margin: 1rem 0;
+        }
         ul{
             li{
                 border-bottom:1px solid #BBBBBB;
+                margin: 0.5rem 0;
                 a{
                     color:#333;
                 }

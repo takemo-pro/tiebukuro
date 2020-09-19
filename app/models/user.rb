@@ -1,12 +1,22 @@
 class User < ApplicationRecord
-  has_many :questions, dependent: :destroy
+  has_many :questions, dependent: :destroy #質問の関連性
+  has_many :active_relationships,class_name:"Relationship",
+                   foreign_key:"follower_id",
+                   dependent: :destroy
+  has_many :passive_relationships,class_name:"Relationship",
+                   foreign_key:"followed_id",
+                   dependent: :destroy
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships
   before_save :downcase_email
   before_create :create_activation_digest
+
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
   has_secure_password
   attr_accessor :remember_token, :activation_token , :reset_token
 
@@ -53,13 +63,27 @@ class User < ApplicationRecord
     UserMailer.password_reset(self).deliver_now
   end
 
-  def password_reset_expired?
+  def password_reset_expired? #パスワードリセットの有効期間内かどうか返す。
     reset_sent_at < 2.hours.ago
   end
 
-  def feed
-    Question.where("user_id=?",id)
+  def feed  #自身と自身のフォローしてる投稿だけを返す。
+    following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
+    Question.where("user_id IN(#{following_ids}) OR user_id = :user_id", user_id: id)
   end
+
+  def follow(other_user) #フォローする
+    following << other_user
+  end
+
+  def unfollow(other_user) #アンフォローする
+    active_relationships.find_by(followed_id:other_user.id).destroy
+  end
+
+  def following?(other_user) #フォローしているかをかえす
+    following.include?(other_user)
+  end
+
 
   private
 

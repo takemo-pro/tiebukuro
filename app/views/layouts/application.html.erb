@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
   </head>
-  <body class="d-flex flex-column h-100">
+  <body class="d-flex flex-column h-100 bg-light">
     <%= render 'layouts/header'%>
     <% flash.each do |message_type, message| %>
       <%= content_tag "div", message, class:"alert alert-#{message_type}" %>
