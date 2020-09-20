@@ -2,9 +2,7 @@
 <% if logged_in? %>
   <div class="row">
     <%= render 'shared/user_sidebar' %>
-    <div class="col-md-9">
-      <%= render 'home_pages/questions' %>
-    </div>
+    <%= render 'home_pages/questions' %>
   </div>
 <% else %>
 <div class="jumbotron container">

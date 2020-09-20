@@ -1,5 +1,5 @@
-<nav class="col-md-3 d-none d-md-block bg-light sidebar">
-  <div class="user-info sidebar-sticky">
+<nav class="collapse col-md-3 d-none d-md-block bg-light sidebar navbarSupportedContent" id="navbarSupportedContent">
+  <div class="user-info sidebar">
     <h3>
       <%= get_gravatar_img(current_user,size:65) %>
       <%= current_user.name %>
@@ -23,7 +23,9 @@
       <li class="nav-item">
         <%= link_to '質問一覧', '#', class:"nav-link" %>
       </li>
-
+      <li class="nav-item">
+        <%= link_to '検索', '#', class:"nav-link" %>
+      </li>
     </ul>
   </div>
 </nav>
