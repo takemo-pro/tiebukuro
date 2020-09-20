@@ -81,7 +81,20 @@ p.session-new-tologin{
 .gravatar_edit{
     margin: 25px 0 10px 0;
 }
-
+//users#show
+div.users-show{
+    div.col-md-8{
+        img{
+            margin-right:1rem;
+        }
+        span.user{
+            font-size:1.5rem;
+        }
+        span.content{
+            margin-top:1rem;
+        }
+    }
+}
 //users#index
 h3.users-index{
     margin:2rem;
@@ -110,7 +123,7 @@ ul.pagination{
     }
 }
 
-//users#show
+//user-sidebar
 nav{
     div.user-info{
         h3{
@@ -127,8 +140,13 @@ nav{
                 a{
                     color:#333;
                 }
+                &:hover{
+                    box-shadow: 1px 2px skyblue;
+                    background-color: lightcyan;
 
+                }
             }
+
         }
     }
 }

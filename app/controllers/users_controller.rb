@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_new_params)
     if @user.save
       @user.send_activation_mail
       flash[:info] = '登録されたメールアドレスに認証メールを送信しました。'
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
+    if @user.update(user_edit_params)
       flash[:success] = 'ユーザー情報を更新しました'
       redirect_to @user
     elsif render 'edit'
@@ -49,11 +49,13 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params # StrongParameter(user)
+  def user_new_params # StrongParameter(user)
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
-
+  def user_edit_params
+    params.require(:user).permit(:name,:profile,:user_icon)
+  end
 
   def correct_user # 対象外のユーザーはリダイレクトで排除する
     @user = User.find(params[:id])

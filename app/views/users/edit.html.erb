@@ -3,14 +3,27 @@
 <% provide(:submit_text, '更新') %>
 <div class="container">
   <div class="row">
-    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <div class="col-sm-12 col-md-10 col-lg-8 mx-auto">
       <div class="card card-signin my-5">
         <div class="card-body">
-          <%= render 'users/form' %>
-          <div class="gravatar_edit">
-            <%= get_gravatar_img @user %>
-            <a href="https://gravatar.com/emails" target="_blank" rel="noopener">change</a>
-          </div>
+          <%= form_with(model:@user, local:true, class:"form-edit") do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+            <div class="form-group">
+              <%= get_gravatar_img @user %>
+              <%= f.file_field :user_icon, class:"form-control-file form-inline" ,accept: "image/jpeg,image/gif,image/png,image/tiff,image/heic", placeholder:"アイコン画像を選択"%>
+            </div>
+            <div class = "form-label-group">
+              <%= f.label :name , "ユーザー名"%>
+              <%= f.text_field :name , class: "form-control" %>
+            </div>
+
+            <div class="form-label-group">
+              <%= f.label :profile, "プロフィール" %>
+              <%= f.text_area :profile, class:"form-control" , placeholder:"プロフィール文を入力してください(最大500文字まで)" %>
+            </div>
+            <%= f.submit "送信", class:"btn btn-primary" %>
+          <% end %>
+
         </div>
       </div>
     </div>

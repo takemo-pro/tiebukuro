@@ -1,9 +1,5 @@
 <nav class="collapse col-md-3 d-none d-md-block bg-light sidebar navbarSupportedContent" id="navbarSupportedContent">
   <div class="user-info sidebar">
-    <h3>
-      <%= get_gravatar_img(current_user,size:65) %>
-      <%= current_user.name %>
-    </h3>
 
     <%= link_to '質問する', new_question_path, class:"btn btn-primary btn-lg" %>
 
