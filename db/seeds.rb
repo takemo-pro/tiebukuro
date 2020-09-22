@@ -17,10 +17,12 @@ User.create!(name: 'take',
   name = Faker::Name.name
   email = "fake-#{n}@email.com"
   password = 'password'
+  profile = Faker::Lorem.sentence(word_count: 15)
   User.create!(name: name, email: email,
                password: password,
                password_confirmation: password,
-               activated: true)
+               activated: true,
+               profile: profile)
 end
 
 users = User.order(:created_at).take(6)

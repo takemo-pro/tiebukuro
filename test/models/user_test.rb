@@ -72,7 +72,7 @@ class UserTest < ActiveSupport::TestCase
 
   test 'dependent question should be destroyed' do
     @user.save
-    @user.questions.create!(content:"hogehoge")
+    @user.questions.create!(content:"hogehoge",title:"hogehoge")
     assert_difference 'Question.count', -1 do
       @user.destroy
     end

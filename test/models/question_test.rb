@@ -3,7 +3,7 @@ require 'test_helper'
 class QuestionTest < ActiveSupport::TestCase
   def setup
     @user = users(:take)
-    @question = @user.questions.build(content:"hogehoge")
+    @question = @user.questions.build(content:"hogehoge",title:"hogehoge")
   end
 
   test "should be valid" do
@@ -17,6 +17,16 @@ class QuestionTest < ActiveSupport::TestCase
 
   test "content should be present" do
     @question.content = nil
+    assert_not @question.valid?
+  end
+
+  test "title should be present" do
+    @question.title = nil
+    assert_not @question.valid?
+  end
+
+  test "title should be less than 41 characters" do
+    @question.title = 'a' * 41
     assert_not @question.valid?
   end
 

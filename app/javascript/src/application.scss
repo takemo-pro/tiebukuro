@@ -1,14 +1,27 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-@media(max-width: 768px){
-    aside{
-        border-right:none !important;
-        margin: 0.5rem !important;
-        padding: 0 !important;
+@media(min-width: 769px){
+    header{
+        div.navbar-collapse{
+            ul.display-md-none{
+                display:none;
+            }
+            form{
+                margin-left:auto;
+            }
+        }
     }
+
+}
+@media(max-width: 768px){
+
 }
 
+
+img{
+    overflow: auto;
+}
 hr{
     margin:0.5rem 0;
     border-color:#BBBBBB;
@@ -17,7 +30,25 @@ footer.mt-auto{
     background-color: #f5f5f5;
     margin-top: auto !important;
 }
+div.header{
+    position:sticky;
+    top:56px;
+    ul.nav{
+        li.nav-item{
+            font-size:1.4rem;
+            color:white;
+            a{
+                color:white;
+                &:hover{
+                    color: skyblue;
+                    font-size:1.8rem;
+                    transition: 0.3s;
+                }
+            }
 
+        }
+    }
+}
 form{
     label{
         margin: 10px 0;
@@ -124,8 +155,12 @@ ul.pagination{
 }
 
 //user-sidebar
-nav{
+nav.sidebar{
+    position:sticky;
+    top:0px;
     div.user-info{
+        position:sticky;
+        top:70px;
         h3{
             margin:1.5rem 0;
             font-weight:normal;
@@ -167,12 +202,29 @@ div.col-md-8{
             }
             .user{
                 display:block;
+                a{
+                    color:cornflowerblue;
+                    &:hover{
+                        text-decoration:underline;
+                    }
+                }
             }
+            a{
+                color:#515151;
+                text-decoration:none;
 
-            .timestamp{
-                display:block;
-                color:#999999;
+                .timestamp{
+                    display:block;
+                    color:#999999;
+                }
             }
         }
+    }
+}
+
+//question-show
+div.question-show{
+    div{
+        margin:0 0 0.5rem 0;
     }
 }

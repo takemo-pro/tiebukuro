@@ -1,0 +1,13 @@
+<% set_full_title("#{@question.user.name}さんの質問") %>
+<div class="row">
+  <%= render 'shared/user_sidebar' %>
+  <div class="question-show col-md-8">
+    <div>
+      <%= link_to get_gravatar_img(@question.user, size: 35), @question.user,class:"d-inline" %>
+      <span class="user"><%= @question.user.name %></span>
+    </div>
+    <h5><%= @question.title %></h5>
+    <hr>
+    <p><%= @question.content %></p>
+  </div>
+</div>

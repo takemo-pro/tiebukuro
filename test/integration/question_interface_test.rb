@@ -15,7 +15,7 @@ class QuestionInterfaceTest < ActionDispatch::IntegrationTest
     content="hogehoge"
     image = fixture_file_upload('test/fixtures/sample_image.jpeg','image/jpeg')
     assert_difference 'Question.count',1 do
-      post questions_path, params:{question:{content:'hogehoge',image: image}}#有効な値の投稿
+      post questions_path, params:{question:{content:'hogehoge',title:'hogehoge',image: image}}#有効な値の投稿
     end
     assert_redirected_to user_url(@user) #ユーザーshowページに飛ぶ
     assert assigns(:question).image.attached?

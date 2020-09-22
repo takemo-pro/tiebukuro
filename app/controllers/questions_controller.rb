@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-
+    @question = Question.find(params[:id])
   end
 
   def index
@@ -41,7 +41,7 @@ class QuestionsController < ApplicationController
 
   private
     def question_params
-      params.require(:question).permit(:content,:image)
+      params.require(:question).permit(:title,:content,:image)
     end
 
     def correct_user
