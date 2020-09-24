@@ -14,7 +14,7 @@
           </span>
         <% end %>
         <% if current_user?(question.user) %>
-          <%= link_to "投稿を削除" , question, method: :delete, class:"badge badge-danger text-light" ,data:{confirm:"この投稿をに削除しますか？"} %>
+          <%= link_to "投稿を削除" , question, method: :delete, class:"badge badge-danger text-light" ,data:{confirm:"この投稿を削除しますか？"} %>
         <% end %>
       </div>
 </li>

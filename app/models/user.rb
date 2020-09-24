@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :questions, dependent: :destroy #質問の関連性
+  has_many :comments, dependent: :destroy
   before_save :downcase_email
   before_create :create_activation_digest
 

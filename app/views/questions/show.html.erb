@@ -6,8 +6,36 @@
       <%= link_to get_gravatar_img(@question.user, size: 35), @question.user,class:"d-inline" %>
       <span class="user"><%= @question.user.name %></span>
     </div>
-    <h5><%= @question.title %></h5>
+    <h5 class="lead"><%= @question.title %></h5>
     <hr>
     <p><%= @question.content %></p>
+    <%= image_tag @question.display_image , class:"rounded" if @question.image.attached? %>
+    <!-- 主投稿の削除リンク -->
+    <% if current_user?(@question.user) %>
+      <%= link_to "投稿を削除" , @question, method: :delete, class:"badge badge-danger text-light" ,data:{confirm:"この投稿を削除しますか？"} %>
+    <% end %>
+
+
+  <a href="#" class="icon  d-block text-right" data-toggle="collapse" data-target="#new-comment-form-parent-nil-<%=@question.id %>">
+    <span class="fas fa-reply"></span>
+  </a>
+  <div class="collapse" id="new-comment-form-parent-nil-<%= @question.id %>">
+    <!-- 質問に対する返信のためフォームの返信元にはnilを入れておく。 -->
+    <%= render 'comments/new_comment', parent: nil%>
+  </div>
+  <hr>
+    <!-- コメントを表示する -->
+    <%= render @comments %>
+
   </div>
 </div>
+<script type="text/javascript">
+//投稿の画像投稿時のファイル容量バリデーション
+  $("#comment_image").bind("change", function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 8) {
+      alert("ファイルサイズが大きすぎます。８MB以下のファイルを指定してください。");
+      $("#comment_image").val("");
+    }
+  });
+</script>

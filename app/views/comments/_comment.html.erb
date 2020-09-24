@@ -1,0 +1,42 @@
+<div class="comment-partial">
+  <span>|</span>
+  <% if (comment.user == comment.question.user && comment.parent.nil?)%>
+    <small>コメント</small>
+  <% else %>
+    <small>返信</small>
+  <% end %>
+  <div class="user">
+    <%= link_to get_gravatar_img(comment.user,size:35), comment.user, class:"d-inline" %>
+    <span class="user"><%= comment.user.name %>
+  </div>
+  <p><%= comment.content %></p>
+  <%= image_tag comment.display_image, class:"rounded" if comment.image.attached? %>
+  <% #コメントを削除するリンク %>
+  <% if current_user?(comment.user) %>
+    <%= link_to "コメントを削除" , [comment.question,comment], method: :delete, class:"badge badge-danger text-light" ,data:{confirm:"このコメントを削除しますか？"} %>
+  <% end %>
+  <a href="#" class="icon d-block text-right" data-toggle="collapse" data-target="#new-comment-form-<%= comment.id %>">
+    <span class="fas fa-reply"></span>
+  </a>
+  <% #コメント用のフォーム parentにコメントする対象を入れておき親子関係作成に使う。%>
+  <div class="collapse" id="new-comment-form-<%= comment.id %>">
+    <%= render 'comments/new_comment', parent: comment %>
+  </div>
+  <% #ここに続くリプライがあればコレクションを渡して出力する %>
+  <% if comment.replies.any? %>
+    <% # もしparentが空（質問に対する返信の場合）はコメントの表示非表示ができる　%>
+    <% if comment.parent.nil? %>
+      <a href="#" data-toggle="collapse" data-target="#replies-<%= comment.id %>">
+        このコメントへの返信
+      </a>
+      <div class="collapse" id="replies-<%= comment.id %>">
+        <%= render comment.replies %>
+      </div>
+    <% else %>
+      <% #返信に対する返信はコメントの表示非表示はくどいのでしない　%>
+      <%= render comment.replies %>
+    <% end %>
+  <% else %>
+    <hr>
+  <% end %>
+</div>

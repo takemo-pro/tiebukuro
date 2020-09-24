@@ -18,7 +18,12 @@
 
 }
 
-
+header{
+    z-index:2000;
+}
+div.header{
+    z-index:2000;
+}
 img{
     overflow: auto;
 }
@@ -224,7 +229,15 @@ div.col-md-8{
 
 //question-show
 div.question-show{
+    border-right:1px solid #BBBBBB;
+    border-left: 1px solid #BBBBBB;
     div{
         margin:0 0 0.5rem 0;
+    }
+    a.icon{
+        font-size:1.3rem;
+    }
+    h5.lead{
+        font-weight:bold;
     }
 }

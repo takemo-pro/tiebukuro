@@ -1,0 +1,20 @@
+<% #　新規コメントのフォーム %>
+<%= form_with(model:[@question,@new_comment] , local:true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="form-group">
+    <%= f.label :content, "本文"%>
+    <%= f.text_area :content, class:"form-control",placeholder:"質問の内容を2000文字以内で入力してください"%>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label :image, "添付画像" %>
+    <%= f.file_field :image ,class:"form-control-file", accept:"image/jpeg,image/gif,image/png,image/heic,image,tiff" %>
+    <small class="form-text text-muted">画像があれば選択（最大8MBまで）</small>
+  </div>
+  <%= f.hidden_field :question_id, value: @question.id %>
+  <% unless parent.nil? %>
+    <%= f.hidden_field :parent_id, value: parent.id %>
+  <% end %>
+  <%= f.submit "送信", class:"btn btn-primary" %>
+<% end %>

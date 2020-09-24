@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :logged_in_user, only:[:new,:create,:edit,:update,:destroy] #show/index以外（閲覧以外）はログイン強制
+  before_action :logged_in_user, only:[:new,:show,:create,:edit,:update,:destroy] #show/index以外（閲覧以外）はログイン強制
   before_action :correct_user, only: :destroy
   def new
     @user = current_user
@@ -26,7 +26,9 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id])
+    @question = Question.find(params[:id]) #質問のデータ
+    @comments = @question.comments.where(parent: nil) #質問についたコメント(親)
+    @new_comment = @question.comments.build
   end
 
   def index
@@ -36,7 +38,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     flash[:success] = "投稿を削除しました"
-    redirect_to request.referrer || root_url
+    redirect_to  root_url
   end
 
   private
