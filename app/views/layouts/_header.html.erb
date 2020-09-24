@@ -1,37 +1,8 @@
 <header class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <%= link_to "Grandmatch", root_path, class:"navbar-brand" %>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <form class="form-inline ml-auto my-2 my-lg-0 d-lg-block d-none d-md-block">
+        <input class="form-control mr-sm-2" type="search" placeholder="質問を探す" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
+    </form>
 
-    <div class="navbar-collapse collapse d-md-none" id="collapse">
-        <ul class="navbar-nav mr-auto display-md-none">
-            <li class="nav-item">
-                <%= link_to "ホーム", root_path, class:"nav-link" %>
-            </li>
-            <% if logged_in? %>
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                ユーザー設定
-                </a>
-
-                <div class="dropdown-menu">
-                    <%= link_to "ユーザー一覧", users_path, class:"dropdown-item" %>
-                    <%= link_to "プロフィール", current_user, class:"dropdown-item" %>
-                    <%= link_to "プロフィールを編集", edit_user_path(current_user) , class:"dropdown-item" %>
-                    <%= link_to "ログアウト", logout_path , method: :delete,  class:"dropdown-item" %>
-                </div>
-
-            </li>
-            <% else %>
-            <li class="nav-item">
-                <%= link_to "ログイン", login_path, class:"nav-link" %>
-            </li>
-            <% end %>
-        </ul>
-        <form class="form-inline my-2 my-lg-0 ">
-            <input class="form-control mr-sm-2" type="search" placeholder="質問を探す" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
-        </form>
-    </div>
 </header>
