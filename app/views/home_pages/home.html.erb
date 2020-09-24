@@ -6,10 +6,13 @@
   </div>
 <% else %>
 <div class="jumbotron container">
-  <h1 class="display-4">Knowte</h1>
-  <p class="lead">分からない事を分からないままにしない知識共有サイト</p>
+  <h1 class="display-4">Grandmatch</h1>
+  <p class="lead">教える・聞く・知る</p>
   <hr class="mr-4">
-  <p>アカウントを作成して質問する。または、アカウントをお持ちの方は<%= link_to "ログイン", "#" %></p>
-  <%= link_to "Sign up!" , signup_path , class:"btn btn-primary btn-lg" %>
+
+  <p>ログインしてさっそく質問する</p>
+  <%= link_to "アカウント作成" , signup_path , class:"btn btn-primary" %>
+  <span>or</span>
+  <%= link_to "ログイン", login_path, class:"btn btn-primary" %>
 </div>
 <% end %>
