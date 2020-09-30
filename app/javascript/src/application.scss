@@ -24,6 +24,9 @@ header{
 div.header{
     z-index:2000;
 }
+.modal{
+    z-index:2100;
+}
 img{
     overflow: auto;
 }
@@ -66,7 +69,7 @@ form{
         width:100%;
     }
     textarea.form-control{
-        height:25rem; //投稿フォームのテキストエリア
+        height:20rem; //投稿フォームのテキストエリア
     }
 
 }
@@ -177,6 +180,9 @@ nav.sidebar{
         }
         a.btn{
             margin: 1rem 0;
+            &:hover{
+                box-shadow: 3px 2px skyblue;
+            }
         }
         ul{
             li{
@@ -236,13 +242,29 @@ div.col-md-8{
 div.question-show{
     border-right:1px solid #BBBBBB;
     border-left: 1px solid #BBBBBB;
-    div{
+    div.user{
         margin:0 0 0.5rem 0;
-    }
-    a.icon{
-        font-size:1.3rem;
     }
     h5.lead{
         font-weight:bold;
+        span.solved-badge{
+            padding:0.3rem 0.5rem;
+        }
+    }
+}
+//Questionパーシャルの背景色ホバー時変更
+li.question-partial{
+    &:hover{
+        background-color: #cfffff;
+        transition:0.5s
+    }
+}
+//コメントパーシャルの背景色
+.comment-partial.bg-solved{
+    background-color: rgb(245, 234, 215);
+}
+.comment-partial{
+    .question-comment-thread-line{
+        border-left:1px solid #BBBBBB;
     }
 }

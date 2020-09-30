@@ -1,4 +1,5 @@
 class Comment < ApplicationRecord
+  default_scope -> {order(solved: :desc)}
   belongs_to :user
   belongs_to :question
   belongs_to :parent, class_name: "Comment", optional: true

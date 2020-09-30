@@ -5,7 +5,7 @@ class CreateComments < ActiveRecord::Migration[6.0]
       t.references :user, null: false, foreign_key: true
       t.references :question, null: false, foreign_key: true
       t.timestamps
-      t.references :comments, :parent, foreign_key:{ to_table: :comments}
+      t.references :parent, foreign_key:{ to_table: :comments} , optional: true
     end
   end
 end

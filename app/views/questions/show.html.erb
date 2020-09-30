@@ -2,23 +2,30 @@
 <div class="row">
   <%= render 'shared/user_sidebar' %>
   <div class="question-show col-md-8">
-    <div>
+    <div class="user">
       <%= link_to get_gravatar_img(@question.user, size: 35), @question.user,class:"d-inline" %>
       <span class="user"><%= @question.user.name %></span>
     </div>
-    <h5 class="lead"><%= @question.title %></h5>
+    <h5 class="lead">
+      <% if @question.solved? %>
+        <span class="solved-badge badge badge-success">解決済!</span>
+      <% end %>
+      <%= @question.title %>
+    </h5>
     <hr>
     <p><%= @question.content %></p>
     <%= image_tag @question.display_image , class:"rounded" if @question.image.attached? %>
     <!-- 主投稿の削除リンク -->
-    <% if current_user?(@question.user) %>
-      <%= link_to "投稿を削除" , @question, method: :delete, class:"badge badge-danger text-light" ,data:{confirm:"この投稿を削除しますか？"} %>
-    <% end %>
+     <div class="d-flex justify-content-end align-items-center">
+      <% if current_user?(@question.user) %>
+        <%= link_to "投稿を削除" , @question, method: :delete, class:"badge badge-danger ml-auto" ,data:{confirm:"この投稿を削除しますか？"} %>
+      <% end %>
+      <a href="#" class="icon ml-3 btn btn-primary btn-large d-block text-right" data-toggle="collapse" data-target="#new-comment-form-parent-nil-<%=@question.id %>">
+        <span class="fas fa-reply"></span> 返信
+      </a>
 
+    </div>
 
-  <a href="#" class="icon  d-block text-right" data-toggle="collapse" data-target="#new-comment-form-parent-nil-<%=@question.id %>">
-    <span class="fas fa-reply"></span>
-  </a>
   <div class="collapse" id="new-comment-form-parent-nil-<%= @question.id %>">
     <!-- 質問に対する返信のためフォームの返信元にはnilを入れておく。 -->
     <%= render 'comments/new_comment', parent: nil%>

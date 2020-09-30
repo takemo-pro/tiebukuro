@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :logged_in_user, only:[:new,:show,:create,:edit,:update,:destroy] #show/index以外（閲覧以外）はログイン強制
-  before_action :correct_user, only: :destroy
+  before_action :logged_in_user, only:[:new,:show,:create,:edit,:update,:destroy,:solved] #show/index以外（閲覧以外）はログイン強制
+  before_action :correct_user, only: [:destroy,:solved]
   def new
     @user = current_user
     @question = current_user.questions.build if logged_in?
@@ -17,13 +17,13 @@ class QuestionsController < ApplicationController
 
   end
 
-  def edit
+  # def edit
 
-  end
+  # end
 
-  def update
+  # def update
 
-  end
+  # end
 
   def show
     @question = Question.find(params[:id]) #質問のデータ
@@ -39,6 +39,10 @@ class QuestionsController < ApplicationController
     @question.destroy
     flash[:success] = "投稿を削除しました"
     redirect_to  root_url
+  end
+
+  def solved
+
   end
 
   private

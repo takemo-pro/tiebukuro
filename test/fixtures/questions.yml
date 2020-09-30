@@ -1,33 +1,39 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 red:
-  content: "My color is red"
+  title: red
+  content: My color is red
   created_at: <%= 10.minutes.ago %>
   user: take
 
 blue:
-  content: "My color is blue"
+  title: blue
+  content: My color is blue
   created_at: <%= 3.years.ago %>
   user: take
 
 yellow:
-  content: "My color is yellow"
+  title: yellow
+  content: My color is yellow
   created_at: <%= 5.hours.ago %>
   user: take
 
 most_recent:
-  content: "My color is rainbow"
+  title: most_recent
+  content: My color is rainbow
   created_at: <%= Time.zone.now %>
   user: take
 
 <% 30.times do |n| %>
 question_<%= n %>:
+  title: question_<%= n %>
   content: <%= Faker::Lorem.sentence(word_count:5) %>
   created_at: <%= 50.days.ago %>
   user: take
 <% end %>
 
 non_take:
-  content: "I'm not Take"
+  title: non_take
+  content: I'm not Take
   created_at: <%= 2.days.ago %>
   user: edward

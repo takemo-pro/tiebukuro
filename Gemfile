@@ -9,7 +9,7 @@ gem 'rails-i18n'
 # fake text
 gem 'faker'
 gem 'bcrypt'
-
+gem 'pg'
 #aws-ses-sdk
 gem 'aws-sdk-rails'
 # pagination
@@ -68,6 +68,5 @@ group :test do
 end
 
 group :production do
-  gem 'pg'
   gem 'puma_worker_killer'
 end

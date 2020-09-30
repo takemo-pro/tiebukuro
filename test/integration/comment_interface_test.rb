@@ -5,6 +5,7 @@ class CommentInterfaceTest < ActionDispatch::IntegrationTest
     @question = questions(:red)
     @user = users(:take)
     @parent_comment = comments(:one)
+    @reply_comment = comments(:two)
     @other_user = users(:edward)
   end
 
@@ -40,5 +41,16 @@ class CommentInterfaceTest < ActionDispatch::IntegrationTest
     # アソシエーションが組まれているか両方からチェック
     assert new_comment.parent_id == @parent_comment.id
     assert @parent_comment.replies.include?(new_comment)
+  end
+
+  test "comment solved test" do
+    log_in_as(@user)
+    post solved_question_comments_path(@question), params:{comment:{content:"hogehoge",question_id:@question.id,parent_id:@parent_comment.id}}
+    assert_redirected_to question_url(@question)
+    #作成したコメントを取得
+    new_comment = assigns(:comment)
+    assert new_comment.reload.solved?
+    assert @parent_comment.reload.solved?
+    assert @question.reload.solved?
   end
 end
