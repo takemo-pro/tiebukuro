@@ -44,6 +44,15 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
+  test "create should redirect when question solved" do
+    log_in_as(@user)
+    @question.update(solved: true)
+    assert_no_difference "Comment.count" do
+      post question_comments_path(@question), params:{comment:{content:"hogehoge",question_id:@question.id}}
+    end
+    assert_redirected_to root_url
+  end
+
   test "destroy should redirect when not logged in" do
     assert_no_difference "Comment.count" do
       delete question_comment_path(@question,@comment)

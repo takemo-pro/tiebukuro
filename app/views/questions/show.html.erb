@@ -18,12 +18,19 @@
     <!-- 主投稿の削除リンク -->
      <div class="d-flex justify-content-end align-items-center">
       <% if current_user?(@question.user) %>
-        <%= link_to "投稿を削除" , @question, method: :delete, class:"badge badge-danger ml-auto" ,data:{confirm:"この投稿を削除しますか？"} %>
+        <button id="config-<%= @question.id %>" class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+          <span class="fas fa-cog"></span>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="config-<%= @question.id %>">
+          <%= link_to "投稿を削除" , @question, method: :delete, class:"dropdown-item" ,data:{confirm:"この投稿を削除しますか？"} %>
+        </div>
       <% end %>
-      <a href="#" class="icon ml-3 btn btn-primary btn-large d-block text-right" data-toggle="collapse" data-target="#new-comment-form-parent-nil-<%=@question.id %>">
-        <span class="fas fa-reply"></span> 返信
-      </a>
-
+      <% #解決済み質問にはコメント投稿できないようにする %>
+      <% unless @question.solved? %>
+        <a href="#" class="icon ml-3 btn btn-primary btn-large d-block text-right" data-toggle="collapse" data-target="#new-comment-form-parent-nil-<%=@question.id %>">
+          <span class="fas fa-reply"></span> 返信
+        </a>
+      <% end %>
     </div>
 
   <div class="collapse" id="new-comment-form-parent-nil-<%= @question.id %>">
@@ -44,5 +51,5 @@
       alert("ファイルサイズが大きすぎます。８MB以下のファイルを指定してください。");
       $("#comment_image").val("");
     }
-  });
+  })
 </script>

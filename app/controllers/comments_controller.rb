@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :logged_in_user
-  before_action :correct_user, only: :destroy
+  before_action :correct_user, only:[:update,:destroy]
   before_action :question_user, only: :solved
   before_action :comment_user, only: :create
 
@@ -47,6 +47,10 @@ class CommentsController < ApplicationController
 
   end
 
+  def update
+
+  end
+
   def destroy
     @comment.destroy
     flash[:success] = "コメントを削除しました"
@@ -74,10 +78,16 @@ class CommentsController < ApplicationController
 
     def comment_user #コメントを送るユーザーが正しいか確認
       @comment = current_user.comments.build(comment_params)
-      @comment.set_reply_user_id
-      #コメ主が質問主と同じorコメ主が設定されていないor正しいコメ主
-      unless @comment.reply_user?
+
+      #解決済みの質問にはコメントをつけない
+      if @comment.question.solved?
         redirect_to root_url
+      else
+        @comment.set_reply_user_id
+        #コメ主が質問主と同じorコメ主が設定されていないor正しいコメ主
+        unless @comment.reply_user?
+          redirect_to root_url
+        end
       end
     end
 

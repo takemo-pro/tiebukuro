@@ -5,10 +5,10 @@
   <% #関係なければ普通の色 %>
   <% cssclass="comment-partial" %>
 <% end %>
-<div class="ml-1 question-comment-thread-line">
-  <div class="ml-1">
-    <span class="d-block"></span>
-    <%= content_tag :div, class:cssclass do %>
+<div>
+  <span class="d-block"></span>
+  <%= content_tag :div, class:cssclass do %>
+    <div>
       <span><i class="fas fa-angle-double-right"></i></span>
       <% #コメントするユーザーと質問の投稿者が同じで質問に対するレスならコメントと表示する %>
       <% if (comment.user == comment.question.user && comment.parent.nil?)%>
@@ -16,53 +16,63 @@
       <% else %>
         <small>返信</small>
       <% end %>
-      <div class="user">
-        <%= link_to get_gravatar_img(comment.user,size:35), comment.user,class:"d-inline" %>
-        <span class="user"><%= comment.user.name %>
-      </div>
-      <p><%= comment.content %></p>
-      <%= image_tag comment.display_image, class:"rounded" if comment.image.attached? %>
-      <% #コメントを削除するリンク %>
-      <div class="d-flex justify-content-end align-items-center">
-        <% if current_user?(comment.user) %>
-          <%= link_to "コメントを削除" , [comment.question,comment], method: :delete, class:"badge badge-danger m-3" ,data:{confirm:"このコメントを削除しますか？"} %>
-        <% end %>
-        <% #解決ボタン %>
-        <% if current_user?(comment.question.user) && !comment.question.solved? %>
-          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal<%=comment.id%>">
-            解決!
-          </button>
-        <% end %>
+
+    </div>
+    <div class="user">
+      <%= link_to get_gravatar_img(comment.user,size:35), comment.user,class:"d-inline" %>
+      <span class="user"><%= comment.user.name %>
+    </div>
+    <p><%= comment.content %></p>
+    <%= image_tag comment.display_image, class:"rounded" if comment.image.attached? %>
+    <% #コメントを削除するリンク %>
+    <div class="d-flex justify-content-end align-items-center">
+      <% if current_user?(comment.user) %>
+        <button id="config-<%= comment.id %>" class="mr-2 btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+          <span class="fas fa-cog"></span>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="config-<%= comment.id %>">
+          <%= link_to "コメントを削除" , [comment.question,comment], method: :delete, class:"dropdown-item" ,data:{confirm:"このコメントを削除しますか？"} %>
+
+
+        </div>
+      <% end %>
+      <% #解決ボタン %>
+      <% if current_user?(comment.question.user) && !comment.question.solved? %>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal<%=comment.id%>">
+          解決!
+        </button>
+      <% end %>
+      <% #返信できないユーザーには表示しない %>
+      <% if correct_comment_user?(comment) %>
         <a href="#" class="icon btn btn-primary d-block text-right ml-3"               data-toggle="collapse" data-target="#new-comment-form-<%= comment.id %>">
         <span class="fas fa-reply"></span> 返信
         </a>
-      </div>
-
-      <% #コメント用のフォーム parentにコメントする対象を入れておき親子関係作成に使う。%>
-      <div class="collapse" id="new-comment-form-<%= comment.id %>">
-        <%= render 'comments/new_comment', parent: comment %>
-      </div>
-      <% #ここに続くリプライがあればコレクションを渡して出力する %>
-      <% if comment.replies.any? %>
-        <% # もしparentが空（質問に対する返信の場合）はコメントの表示非表示ができる　%>
-        <% if comment.parent.nil? %>
-          <a href="#" data-toggle="collapse" data-target="#replies-<%= comment.id %>">
-            このコメントへの返信
-          </a>
-          <div class="collapse" id="replies-<%= comment.id %>">
-            <%= render comment.replies %>
-          </div>
-        <% else %>
-          <% #返信に対する返信はコメントの表示非表示はくどいのでしない　%>
-          <%= render comment.replies %>
-        <% end %>
-      <% else %>
-        <hr>
       <% end %>
+    </div>
 
+    <% #コメント用のフォーム parentにコメントする対象を入れておき親子関係作成に使う。%>
+    <div class="collapse" id="new-comment-form-<%= comment.id %>">
+      <%= render 'comments/new_comment', parent: comment %>
+    </div>
+    <% #ここに続くリプライがあればコレクションを渡して出力する %>
+    <% if comment.replies.any? %>
+      <% # もしparentが空（質問に対する返信の場合）はコメントの表示非表示ができる　%>
+      <% if comment.parent.nil? %>
+        <button class="btn-sm btn btn-outline-primary" data-toggle="collapse" data-target="#replies-<%= comment.id %>">
+          返信を表示+
+        </button>
+        <div class="collapse" id="replies-<%= comment.id %>">
+          <%= render comment.replies %>
+        </div>
+      <% else %>
+        <% #返信に対する返信はコメントの表示非表示はくどいのでしない　%>
+        <%= render comment.replies %>
+      <% end %>
+    <% else %>
+      <hr>
     <% end %>
-  </div>
 
+  <% end %>
 </div>
 
 
@@ -101,3 +111,16 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+//アコーディオン部分（返信の表示非表示）を表示切り替えするところ
+  $('[data-target="#replies-<%= comment.id %>"]').click(function(){
+
+    if ($(this).text()=='返信を非表示-') {
+      $(this).text('返信を表示+');
+    } else {
+      $(this).text('返信を非表示-');
+    }
+  })
+
+</script>
