@@ -11,3 +11,9 @@ two:
   user: take
   question: red
   parent: one
+
+three:
+  content: "edward 1st comment"
+  user: edward
+  question: red
+  parent: nil

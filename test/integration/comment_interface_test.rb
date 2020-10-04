@@ -9,7 +9,7 @@ class CommentInterfaceTest < ActionDispatch::IntegrationTest
     @other_user = users(:edward)
   end
 
-  test 'question interface test' do
+  test 'comment interface test' do
     #ログインしてshowページにアクセス
     log_in_as(@user)
     get question_path(@question)
@@ -27,6 +27,7 @@ class CommentInterfaceTest < ActionDispatch::IntegrationTest
                                                                image:image,
                                                                question_id:@question.id}}
     end
+    new_comment = assigns(:comment)
     #リダイレクトでquestion#showに戻る
     assert_redirected_to question_url(@question)
     follow_redirect!
@@ -36,11 +37,11 @@ class CommentInterfaceTest < ActionDispatch::IntegrationTest
     post question_comments_path(@question), params:{comment:{content:content,
                                                              image:image,
                                                              question_id:@question.id,
-                                                             parent_id:@parent_comment.id}}
-    new_comment = assigns(:comment)
+                                                             parent_id:new_comment.id}}
     # アソシエーションが組まれているか両方からチェック
-    assert new_comment.parent_id == @parent_comment.id
-    assert @parent_comment.replies.include?(new_comment)
+    new_comment2 = assigns(:comment)
+    assert new_comment.reload.replies.include?(new_comment2)
+    assert new_comment == new_comment2.reload.parent
   end
 
   test "comment solved test" do

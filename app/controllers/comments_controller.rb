@@ -2,11 +2,12 @@ class CommentsController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user, only: :destroy
   before_action :question_user, only: :solved
+  before_action :comment_user, only: :create
 
   def create
-    @comment = current_user.comments.build(comment_params)
     if @comment.save
       #とりあえずajaxは使わずリダイレクトで画面を更新する。
+      flash[:success] = "コメントを送信しました！"
       redirect_to @comment.question
     else
       flash[:danger] = "コメントの送信に失敗しました"
@@ -67,6 +68,15 @@ class CommentsController < ApplicationController
     def question_user #正しいユーザーで解決済みにしようとしているか確認
       @comment = current_user.comments.build(comment_params)
       unless @comment.question.user == current_user
+        redirect_to root_url
+      end
+    end
+
+    def comment_user #コメントを送るユーザーが正しいか確認
+      @comment = current_user.comments.build(comment_params)
+      @comment.set_reply_user_id
+      #コメ主が質問主と同じorコメ主が設定されていないor正しいコメ主
+      unless @comment.reply_user?
         redirect_to root_url
       end
     end
