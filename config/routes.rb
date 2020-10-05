@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets, only:[:new,:create,:edit,:update]
   resources :questions do
+    resources :likes, only:[:create,:destroy]
     resources :comments do
       #質問の解決（solvedフラグの更新につかう
       post 'solved', on: :collection

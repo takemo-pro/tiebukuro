@@ -27,6 +27,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id]) #質問のデータ
+    @like = @question.likes.build
     @comments = @question.comments.where(parent: nil) #質問についたコメント(親)
     @new_comment = @question.comments.build
   end

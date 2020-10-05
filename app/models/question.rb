@@ -1,6 +1,8 @@
 class Question < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_users, through: :likes, source: :user
   has_one_attached :image
   default_scope -> {order(created_at: :desc)}
   validates :user_id, presence: true
@@ -14,5 +16,6 @@ class Question < ApplicationRecord
   def display_image #リサイズした画像を返す
     image.variant(resize_to_limit: [500,500])
   end
+
 
 end

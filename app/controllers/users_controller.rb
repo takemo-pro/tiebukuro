@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.where(activated:true).page(params[:page]).per(30)
+    @users = User.where(activated:true).page(params[:page]).per(20)
   end
 
   def show

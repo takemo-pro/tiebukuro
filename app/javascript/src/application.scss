@@ -15,9 +15,14 @@
 
 }
 @media(max-width: 768px){
-
+button{
+    -webkit-appearance: none;
 }
-
+}
+body{
+    -webkit-text-size-adjust: 100%;
+    background-color: #fcf5e9;
+}
 header{
     z-index:2000;
 }
@@ -75,7 +80,7 @@ form{
 }
 
 ul{
-    padding:0 0 0 2rem;
+    padding:0;
     margin:0;
 }
 
@@ -90,7 +95,7 @@ aside{
 //home-page
 .jumbotron{
     h1{
-        letter-spacing:0.5rem;
+        letter-spacing:0.3rem;
     }
 }
 .home-page{
@@ -157,6 +162,7 @@ ul.users{
 }
 
 ul.pagination{
+    display:none;
     margin:2rem 0;
     li{
         width:2.5rem;

@@ -24,8 +24,11 @@
     </div>
     <p><%= comment.content %></p>
     <%= image_tag comment.display_image, class:"rounded" if comment.image.attached? %>
-    <% #コメントを削除するリンク %>
+
     <div class="d-flex justify-content-end align-items-center">
+
+
+      <% #コメントを削除するリンク %>
       <% if current_user?(comment.user) %>
         <button id="config-<%= comment.id %>" class="mr-2 btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">
           <span class="fas fa-cog"></span>
@@ -58,8 +61,8 @@
     <% if comment.replies.any? %>
       <% # もしparentが空（質問に対する返信の場合）はコメントの表示非表示ができる　%>
       <% if comment.parent.nil? %>
-        <button class="btn-sm btn btn-outline-primary" data-toggle="collapse" data-target="#replies-<%= comment.id %>">
-          返信を表示+
+        <button class="btn-sm btn btn-outline-primary" data-toggle="collapse" data-target="#replies-<%= comment.id %>" aria-expanded="false">
+          返信を表示 +
         </button>
         <div class="collapse" id="replies-<%= comment.id %>">
           <%= render comment.replies %>
@@ -115,11 +118,11 @@
 <script type="text/javascript">
 //アコーディオン部分（返信の表示非表示）を表示切り替えするところ
   $('[data-target="#replies-<%= comment.id %>"]').click(function(){
-
-    if ($(this).text()=='返信を非表示-') {
-      $(this).text('返信を表示+');
-    } else {
-      $(this).text('返信を非表示-');
+    const collapse = $(this).attr('aria-expanded');
+    if (collapse == "true") {
+      $(this).text('返信を表示 +');
+    } else if (collapse == "false"){
+      $(this).text('返信を非表示 -');
     }
   })
 

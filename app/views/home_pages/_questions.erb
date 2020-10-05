@@ -1,7 +1,7 @@
 <div class="col-md-8">
     <h4>最新の質問</h4>
-    <ol class="questions">
+    <ol class="questions jscroll">
         <%= render @questions %>
+        <%= paginate @questions %>
     </ol>
 </div>
-<%= paginate @questions %>

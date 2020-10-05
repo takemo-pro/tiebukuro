@@ -1,9 +1,8 @@
 <%= set_full_title("ユーザー一覧")%>
 <h3 class="users-index text-center">ユーザー一覧</h1>
 <div class="container">
-  <%= paginate @users %>
-  <ul class="users">
+  <ul class="users jscroll">
       <%= render @users %>
+      <%= paginate @users %>
   </ul>
-  <%= paginate @users %>
 </div>
