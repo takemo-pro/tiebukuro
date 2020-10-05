@@ -24,6 +24,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    #ユーザーの投稿した質問一覧をフィードする
     @questions = @user.questions.page(params[:page])
     redirect_to root_url and return unless @user.activated?
   end

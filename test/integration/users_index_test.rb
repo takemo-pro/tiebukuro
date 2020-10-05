@@ -10,8 +10,8 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     log_in_as(@admin)
     get users_path
     assert_template 'users/index'
-    assert_select 'ul.pagination', count: 2
-    User.page(1).each do |user|
+    assert_select 'ul.pagination', count: 1
+    User.page(1).per(20).each do |user|
       assert_select 'a[href=?]', user_path(user), text: user.name
       assert_select 'a[href=?]', user_path(user), text: 'Delete' unless user == @admin
     end

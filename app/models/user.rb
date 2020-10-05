@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :liked_questions, through: :likes, source: :question
   before_save :downcase_email
   before_create :create_activation_digest
-
+  default_scope -> {order(created_at: :asc)}
   has_one_attached :user_icon
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze

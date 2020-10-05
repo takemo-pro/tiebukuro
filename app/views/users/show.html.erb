@@ -16,5 +16,12 @@
         <small><%= link_to "プロフィールを編集する" , edit_user_path %></small>
       <% end %>
     </div>
+    <hr class="my-4">
+      <%= @user.name %>さんの質問(<%= @user.questions.count %>件)
+    <hr class="my-3">
+      <ul class="users jscroll">
+      <%= render @questions %>
+      <%= paginate @questions %>
+  </ul>
   </div>
 </div>

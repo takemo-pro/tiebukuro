@@ -142,6 +142,39 @@ div.users-show{
         span.content{
             margin-top:1rem;
         }
+        ul{
+            list-style-type:none;
+            margin:0;
+            padding:0;
+            li{
+                padding:0.8rem 0;
+                .gravatar{
+                    float:left;
+                    margin-right:1.5rem;
+                }
+                span.user{
+                    font-size:1rem;
+                    display:block;
+                    a{
+                        color:cornflowerblue;
+                        &:hover{
+                            text-decoration:underline;
+                        }
+                    }
+                }
+                span.content{
+                    margin:0;
+                }
+                a{
+                    color:#515151;
+                    text-decoration:none;
+                    .timestamp{
+                        display:block;
+                        color:#999999;
+                    }
+                }
+            }
+        }
     }
 }
 //users#index
