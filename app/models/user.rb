@@ -3,6 +3,14 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_questions, through: :likes, source: :question
+  has_many :active_relationships, class_name: "Relationship",
+                                  foreign_key: "follower_id",
+                                  dependent: :destroy
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :passive_relationships, class_name: "Relationship",
+                                   foreign_key: "followed_id",
+                                   dependent: :destroy
+  has_many :followers, through: :passive_relationships
   before_save :downcase_email
   before_create :create_activation_digest
   default_scope -> {order(created_at: :asc)}
@@ -76,6 +84,17 @@ class User < ApplicationRecord
     self.likes.exists?(question_id: question.id)
   end
 
+  def follow(other_user) #ユーザーをフォローする
+    self.following << other_user
+  end
+
+  def unfollow(other_user) #ユーザーのフォローを解除する
+    self.active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  def following?(other_user) #特定のユーザーをフォローしているかどうか返す
+    self.following.include?(other_user)
+  end
 
   private
 

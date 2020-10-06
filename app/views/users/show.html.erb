@@ -6,7 +6,8 @@
   <div class="col-md-8">
     <div>
       <%= link_to get_gravatar_img(@user, size: 50), @user ,class:"d-inline" %>
-      <span class="user"><%= @user.name %></span>
+      <span class="user my-auto"><%= @user.name %></span>
+      <%= render 'follow_form' if logged_in? %>
     </div>
     <div>
       <span class="content d-block">

@@ -13,6 +13,13 @@ User.create!(name: 'take',
              password_confirmation: 'foobar',
              activated: true,
              admin: true)
+#ユーザーのフォロー
+users=User.all
+user1 = user.first
+following = users[2..50]
+followers = users[3..30]
+following.each {|followed| user1.follow(followed)}
+followers.each {|follower| follower.follow(user1)}
 
 99.times do |n|
   name = Faker::Name.name
