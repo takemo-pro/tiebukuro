@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:edit, :update, :destroy,:followed,:follower]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:destroy]
 
@@ -18,8 +18,13 @@ class UsersController < ApplicationController
     end
   end
 
-  def index
-    @users = User.where(activated:true).page(params[:page]).per(20)
+
+  def followed #フォローしているユーザー一覧を返す
+    @following_users = current_user.following.page(params[:page]).per(20)
+  end
+
+  def follower #フォロワー一覧を返す
+    @follower_users = current_user.followers.page(params[:page]).per(20)
   end
 
   def show

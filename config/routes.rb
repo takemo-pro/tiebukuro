@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   root 'home_pages#home'
-  resources :users
+  resources :users ,only: [:new,:create,:show,:edit,:update,:destroy] do
+    collection do
+      get 'followed'
+      get 'follower'
+    end
+  end
   resources :account_activations, only: [:edit]
   resources :relationships, only:[:create,:destroy]
   resources :password_resets, only:[:new,:create,:edit,:update]
