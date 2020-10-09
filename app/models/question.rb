@@ -3,6 +3,7 @@ class Question < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
+  has_many :notices, dependent: :destroy
   has_one_attached :image
   default_scope -> {order(created_at: :desc)}
   validates :user_id, presence: true
@@ -16,6 +17,18 @@ class Question < ApplicationRecord
   def display_image #リサイズした画像を返す
     image.variant(resize_to_limit: [500,500])
   end
+
+  def create_like_notice_by(current_user) #いいねの通知を質問主に送る
+    notice = current_user.active_notices.build(
+      question_id: self.id,
+      visited_id: self.user_id,
+      action: "like"
+    )
+    #自分の投稿に自分がいいねする時以外は通知を送る
+    notice.save unless current_user == self.user
+  end
+
+
 
 
 end

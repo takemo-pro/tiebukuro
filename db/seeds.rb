@@ -13,26 +13,25 @@ User.create!(name: 'take',
              password_confirmation: 'foobar',
              activated: true,
              admin: true)
-#ユーザーのフォロー
-users=User.all
-user1 = user.first
-following = users[2..50]
-followers = users[3..30]
-following.each {|followed| user1.follow(followed)}
-followers.each {|follower| follower.follow(user1)}
 
 99.times do |n|
-  name = Faker::Name.name
-  email = "fake-#{n}@email.com"
-  password = 'password'
-  profile = Faker::Lorem.sentence(word_count: 15)
-  User.create!(name: name, email: email,
-               password: password,
-               password_confirmation: password,
-               activated: true,
-               profile: profile)
+name = Faker::Name.name
+email = "fake-#{n}@email.com"
+password = 'password'
+profile = Faker::Lorem.sentence(word_count: 15)
+User.create!(name: name, email: email,
+  password: password,
+  password_confirmation: password,
+  activated: true,
+  profile: profile)
 end
-
+#ユーザーのフォロー
+users = User.all
+user  = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
 #questionの生成
 users = User.order(:created_at).take(6)
 50.times do

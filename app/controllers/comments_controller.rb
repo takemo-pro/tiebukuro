@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
 
   def create
     if @comment.save
+      @comment.create_comment_notice_by(current_user)
       #とりあえずajaxは使わずリダイレクトで画面を更新する。
       flash[:success] = "コメントを送信しました！"
       redirect_to @comment.question

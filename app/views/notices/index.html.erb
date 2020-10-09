@@ -1,0 +1,13 @@
+<% set_full_title("#{current_user.name}さんの通知") %>
+<div class="row users-notice">
+  <% if logged_in? %>
+    <%= render 'shared/user_sidebar' %>
+  <% end %>
+  <div class="col-md-8">
+    <h5 class="lead">通知</h5>
+    <ul class="notice-list jscroll">
+      <%= render @notices %>
+      <%= paginate @notices %>
+    </ul>
+  </div>
+</div>

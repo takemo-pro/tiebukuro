@@ -1,0 +1,7 @@
+<li class="notice">
+  <%= link_to user_path(notice.visiter) do %>
+    <%= get_gravatar_img(notice.visiter,size:50) %>
+  <% end %>
+  <%= get_notice_sentence(notice) %>
+</li>
+<hr>

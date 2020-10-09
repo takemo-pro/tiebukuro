@@ -9,4 +9,8 @@ module UsersHelper
     end
 
   end
+
+  def non_check_notice_exist? #未読通知があるかどうか返す
+    current_user.passive_notices.where(checked:false).any?
+  end
 end

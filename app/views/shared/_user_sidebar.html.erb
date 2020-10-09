@@ -1,26 +1,45 @@
 <nav class="col-md-3 d-md-block collapse sidebar" id="sidebar-collapse">
   <div class="user-info ">
-
     <%= link_to '質問する', new_question_path, class:"btn btn-primary btn-lg" %>
-
     <ul class="nav flex-column">
       <li class="nav-item">
-        <%= link_to 'ホーム', root_path, class:"nav-link"%>
+        <%= link_to root_path, class:"nav-link" do %>
+          <i class="fas fa-home"></i>
+          ホーム
+        <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to 'プロフィール', user_path(current_user) ,class:"nav-link" %>
+        <%= link_to user_path(current_user) ,class:"nav-link" do %>
+          <i class="far fa-address-card"></i>
+          プロフィール
+        <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to 'ユーザー一覧', followed_users_path, class:"nav-link" %>
+        <%= link_to followed_users_path, class:"nav-link" do %>
+          <i class="fas fa-user-friends"></i>
+          ユーザー一覧
+        <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to 'メッセージ', '#', class:"nav-link" %>
+        <%= link_to notices_path, class:"nav-link" do %>
+          <i class="far fa-bell"></i>
+          <% if non_check_notice_exist? %>
+            <i class="fa fa-circle" style="color: gold;"></i>
+          <% end %>
+          通知
+        <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to '検索', '#', class:"nav-link" %>
+        <%= link_to  '#', class:"nav-link" do %>
+          <i class="fas fa-search"></i>
+          検索
+        <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to 'ログアウト', logout_path, method: :delete, class:"nav-link" %>
+        <%= link_to logout_path, method: :delete, class:"nav-link" do %>
+          <i class="fas fa-sign-out-alt"></i>
+          ログアウト
+        <% end %>
       </li>
     </ul>
   </div>

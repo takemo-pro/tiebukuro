@@ -18,11 +18,11 @@
     <!-- 主投稿の削除リンク -->
     <div class="d-flex justify-content-end align-items-center">
       <% #いいねボタン %>
-      <div id="like-button" class="d-inline-block m-0">
+      <div id="like-button" class="d-inline-block">
         <%= render partial:'likes/like' , locals:{question: @question,like:@like} %>
       </div>
       <% if current_user?(@question.user) %>
-        <button id="config-<%= @question.id %>" class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+        <button id="config-<%= @question.id %>" class="btn  btn-outline-secondary dropdown-toggle ml-3" type="button" data-toggle="dropdown">
           <span class="fas fa-cog"></span>
         </button>
         <div class="dropdown-menu" aria-labelledby="config-<%= @question.id %>">

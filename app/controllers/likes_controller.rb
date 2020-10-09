@@ -5,6 +5,7 @@ class LikesController < ApplicationController
 
   def create
     @like = current_user.likes.create(question_id: params[:question_id])
+    @question.create_like_notice_by(current_user) #通知の作成
     #あとでAjaxを実装するまでとりあえずルート
     respond_to do |format|
       format.html { redirect_to @like.question || root_url }

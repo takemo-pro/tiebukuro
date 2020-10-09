@@ -19,12 +19,27 @@ button{
     -webkit-appearance: none;
 }
 }
+
+@media(max-width: 442px){
+    main{
+        margin-top: 105px !important;
+    }
+}
+
+
+
 main{
-    margin-top:56px;
+    margin-top:70px;
+    overflow: auto;
 }
 body{
     -webkit-text-size-adjust: 100%;
     background-color: #fcf5e9;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+ul{
+    list-style-type: none;
 }
 header{
     z-index:2000;

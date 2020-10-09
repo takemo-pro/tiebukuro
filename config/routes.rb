@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'notices/index'
   root 'home_pages#home'
   resources :users ,only: [:new,:create,:show,:edit,:update,:destroy] do
     collection do
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
       get 'follower'
     end
   end
+  resources :notices, only: :index
   resources :account_activations, only: [:edit]
   resources :relationships, only:[:create,:destroy]
   resources :password_resets, only:[:new,:create,:edit,:update]

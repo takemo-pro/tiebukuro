@@ -68,5 +68,7 @@ group :test do
 end
 
 group :production do
+  #aws s3 file strage
+  gem 'aws-sdk-s3', require:false
   gem 'puma_worker_killer'
 end

@@ -22,7 +22,7 @@
       <%= link_to get_gravatar_img(comment.user,size:35), comment.user,class:"d-inline" %>
       <span class="user"><%= comment.user.name %>
     </div>
-    <p><%= comment.content %></p>
+    <p class="d-block w-100"><%= comment.content %></p>
     <%= image_tag comment.display_image, class:"rounded" if comment.image.attached? %>
 
     <div class="d-flex justify-content-end align-items-center">

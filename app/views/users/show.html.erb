@@ -21,8 +21,8 @@
       <%= @user.name %>さんの質問(<%= @user.questions.count %>件)
     <hr class="my-3">
       <ul class="users jscroll">
-      <%= render @questions %>
-      <%= paginate @questions %>
-  </ul>
+        <%= render @questions %>
+        <%= paginate @questions %>
+      </ul>
   </div>
 </div>

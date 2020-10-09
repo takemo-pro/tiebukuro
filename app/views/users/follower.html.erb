@@ -2,7 +2,7 @@
 <div class="row">
   <%= render 'shared/user_sidebar' %>
   <div class="col-md-8">
-    <h5 class="mb-3"><%= current_user.name %>のフォロワー</h5>
+    <h5 class="mb-3"><%= current_user.name %>のフォロワー　<%= @follower_users.count %>人</h5>
     <% #ボタン部分 %>
     <div class="w-100 row mb-3" role="group">
       <div class="col">

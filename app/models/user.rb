@@ -6,11 +6,18 @@ class User < ApplicationRecord
   has_many :active_relationships, class_name: "Relationship",
                                   foreign_key: "follower_id",
                                   dependent: :destroy
-  has_many :following, through: :active_relationships, source: :followed
   has_many :passive_relationships, class_name: "Relationship",
-                                   foreign_key: "followed_id",
-                                   dependent: :destroy
+                                    foreign_key: "followed_id",
+                                    dependent: :destroy
+  has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships
+  has_many :active_notices, class_name: "Notice",
+                            foreign_key: "visiter_id",
+                            dependent: :destroy
+  has_many :passive_notices, class_name: "Notice",
+                             foreign_key: "visited_id",
+                             dependent: :destroy
+
   before_save :downcase_email
   before_create :create_activation_digest
   default_scope -> {order(created_at: :asc)}
@@ -86,6 +93,7 @@ class User < ApplicationRecord
 
   def follow(other_user) #ユーザーをフォローする
     self.following << other_user
+    create_follow_notice(other_user) #フォロー通知の作成
   end
 
   def unfollow(other_user) #ユーザーのフォローを解除する
@@ -96,6 +104,8 @@ class User < ApplicationRecord
     self.following.include?(other_user)
   end
 
+
+
   private
 
   def create_activation_digest # アクティベーションのトークンとダイジェストを生成、保存する
@@ -105,5 +115,13 @@ class User < ApplicationRecord
 
   def downcase_email # メールアドレスをDB保存前に全て小文字化する（データの統一・唯一性の保持）
     email.downcase!
+  end
+
+  def create_follow_notice(followed_user) #フォロー通知をおくる
+
+    notice = self.active_notices.create(
+      visited_id: followed_user.id,
+      action: "follow"
+    )
   end
 end

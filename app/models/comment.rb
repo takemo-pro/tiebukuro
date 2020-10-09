@@ -28,4 +28,18 @@ class Comment < ApplicationRecord
     (self.reply_user_id==self.user_id) || (self.reply_user_id==self.question.user_id)
   end
 
+  def create_comment_notice_by(current_user) #コメントの通知を作成する
+    if self.parent_id.nil? #コメントへの返信か質問への返信かで通知の送信先を変える
+      parent_user_id = self.question.user_id
+    else
+      parent_user_id = self.parent.user_id
+    end
+    notice = current_user.active_notices.build(
+      question_id: self.question_id,
+      comment_id: self.parent_id,
+      visited_id: parent_user_id,
+      action:"comment"
+    )
+    notice.save unless current_user.id == parent_user_id #自分自身に送信する際は通知を作成しない
+  end
 end
