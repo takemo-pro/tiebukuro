@@ -12,4 +12,10 @@ module NoticesHelper
         tag.a(visiter_user.name, href:user_path(visiter_user), style:"font-weight: bold;")+"が"+tag.a('あなたの投稿', href:question_path(notice.question), style:"font-weight: bold;")+"にコメントしました"
     end
   end
+
+  def received_comment(notice)
+    if notice.action == "comment"
+      tag.span(notice.comment.try(:content), class:"text-secondary d-block")
+    end
+  end
 end

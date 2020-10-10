@@ -1,7 +1,13 @@
 <li class="notice">
-  <%= link_to user_path(notice.visiter) do %>
-    <%= get_gravatar_img(notice.visiter,size:50) %>
-  <% end %>
-  <%= get_notice_sentence(notice) %>
+  <div class="d-inline-block align-middle mr-1">
+    <%= link_to user_path(notice.visiter) do %>
+      <%= get_gravatar_img(notice.visiter,size:50) %>
+    <% end %>
+  </div>
+  <div class="d-inline-block align-middle">
+    <%= get_notice_sentence(notice) %>
+    <br>
+    <%= received_comment(notice) %>
+  </div>
 </li>
 <hr>

@@ -36,7 +36,7 @@ class Comment < ApplicationRecord
     end
     notice = current_user.active_notices.build(
       question_id: self.question_id,
-      comment_id: self.parent_id,
+      comment_id: self.id,
       visited_id: parent_user_id,
       action:"comment"
     )
