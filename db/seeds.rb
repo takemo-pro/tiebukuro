@@ -7,10 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Faker::Config.locale = :ja
 #ユーザーの生成
-User.create!(name: 'take',
-             email: 'take.webengineer@gmail.com',
-             password: 'foobar',
-             password_confirmation: 'foobar',
+User.create!(name: 'Grandmatch Admin',
+             email: 'Admin.grandmatch@gmail.com',
+             password: 'password',
+             password_confirmation: 'password',
              activated: true,
              admin: true)
 

@@ -24,5 +24,10 @@
             </div>
 
             <%= f.submit yield(:submit_text), class:"btn btn-primary" %>
-
+          <% end %>
+          <%= form_with(url: login_path, scope: :session, local: true, class: "form-signin") do |f| %>
+            <%= f.hidden_field :email, value:"Admin.grandmatch@gmail.com" %>
+            <%= f.hidden_field :password, value:"password" %>
+            <%= f.hidden_field :remember_me, value:1 %>
+            <%= f.submit "簡単ログイン", class:"btn btn-success" %>
           <% end %>
