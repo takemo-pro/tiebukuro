@@ -1,5 +1,18 @@
 <div class="col-md-8">
-    <h4>最新の質問</h4>
+    <div class="d-flex flex-wrap-column">
+        <h4 class="d-inline-block"><%= sort_select_button_text %></h4>
+        <div class="dropdown d-inline-block ml-auto">
+            <button class="btn btn-secondary dropdown-toggle justify-content-end" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= sort_select_button_text %>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                <%= link_to  "新規登録順", root_path , class:"dropdown-item" %>
+                <%= link_to  "いいねが多い順", root_path(sort: "likes") , class:"dropdown-item" %>
+                <%= link_to  "フォローしたユーザーの質問", root_path(sort: "follow") , class:"dropdown-item" %>
+                <%= link_to  "未解決の質問", root_path(sort: "nonsolved") , class:"dropdown-item" %>
+            </div>
+        </div>
+    </div>
     <ol class="questions jscroll">
         <%= render @questions %>
         <%= paginate @questions %>

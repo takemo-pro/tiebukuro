@@ -1,15 +1,18 @@
-<% set_full_title("Edit") %>
+<% set_full_title("ユーザー情報編集") %>
 <% provide(:subtitle, 'ユーザー情報編集') %>
 <% provide(:submit_text, '更新') %>
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 col-md-10 col-lg-8 mx-auto">
+    <%= render 'shared/user_sidebar' %>
+    <div class="col-md-8 mx-auto">
+      <h5>ユーザー情報編集</h5>
       <div class="card card-signin my-5">
         <div class="card-body">
           <%= form_with(model:@user, local:true, class:"form-edit") do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
             <div class="form-group">
               <%= get_gravatar_img @user %>
+              <%= f.label :user_icon , "アイコン画像"%>
               <%= f.file_field :user_icon, class:"form-control-file form-inline" ,accept: "image/jpeg,image/gif,image/png,image/tiff,image/heic", placeholder:"アイコン画像を選択"%>
             </div>
             <div class = "form-label-group">

@@ -1,9 +1,5 @@
-<header class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<header class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
     <%= link_to "Grandmatch", root_path, class:"navbar-brand" %>
-    <form class="form-inline ml-auto my-2 my-lg-0 d-lg-block d-none d-md-block">
-        <input class="form-control mr-sm-2" type="search" placeholder="質問を探す" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
-    </form>
 <div class="d-md-none p-0 header navbar navbar-expand-md navbar-dark bg-dark">
 <% #ヘッダーアイコン群 %>
   <ul class="nav">
@@ -19,7 +15,7 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to users_path, class:"nav-link" do %>
+        <%= link_to followed_users_path, class:"nav-link" do %>
           <span class="fas fa-user-friends"></span>
         <% end %>
       </li>
@@ -37,6 +33,7 @@
 
   </ul>
 <% #ドロップダウンメニュー群 %>
+</div>
       <div class="navbar-collapse collapse d-md-none" id="collapse">
         <ul class="navbar-nav mr-auto display-md-none">
             <li class="nav-item">
@@ -49,7 +46,7 @@
                 </a>
 
                 <div class="dropdown-menu">
-                    <%= link_to "ユーザー一覧", users_path, class:"dropdown-item" %>
+                    <%= link_to "ユーザー一覧", followed_users_path, class:"dropdown-item" %>
                     <%= link_to "プロフィール", current_user, class:"dropdown-item" %>
                     <%= link_to "プロフィールを編集", edit_user_path(current_user) , class:"dropdown-item" %>
                     <%= link_to "ログアウト", logout_path , method: :delete,  class:"dropdown-item" %>
@@ -62,10 +59,9 @@
             </li>
             <% end %>
         </ul>
-        <form class="form-inline my-2 my-lg-0 ">
+        <form class="form-inline my-2 my-lg-0 d-md-none">
             <input class="form-control mr-sm-2" type="search" placeholder="質問を探す" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
         </form>
     </div>
-</div>
 </header>
