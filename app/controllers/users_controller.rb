@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :destroy,:followed,:follower]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:destroy]
-
+  before_action :check_test_user, only: :update
   def new
     @user = User.new
   end
@@ -39,7 +39,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_edit_params)
       flash[:success] = 'ユーザー情報を更新しました'
       redirect_to @user
@@ -70,5 +69,13 @@ class UsersController < ApplicationController
 
   def admin_user # 管理者でないユーザーはルートにリダイレクトさせる
     redirect_to(root_url) unless current_user.admin?
+  end
+
+  def check_test_user #テストユーザーのアカウントは編集できないようにする
+    @user = User.find(params[:id])
+    if @user.email == "admin.grandmatch@gmail.com"
+      flash[:danger] = "テスト用アカウントのためユーザー情報は変更できません"
+      redirect_to root_url
+    end
   end
 end

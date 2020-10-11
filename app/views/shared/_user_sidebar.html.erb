@@ -1,4 +1,4 @@
-<nav class="col-md-3 d-md-block collapse sidebar" id="sidebar-collapse">
+<nav class="col-md-3 d-md-block p-0 collapse sidebar" id="sidebar-collapse">
   <div class="user-info ">
     <%= link_to '質問する', new_question_path, class:"btn btn-primary btn-lg" %>
     <ul class="nav flex-column">
@@ -17,7 +17,7 @@
       <li class="nav-item">
         <%= link_to followed_users_path, class:"nav-link" do %>
           <i class="fas fa-user-friends"></i>
-          ユーザ ー覧
+          ユーザーー覧
         <% end %>
       </li>
       <li class="nav-item">
@@ -27,12 +27,6 @@
             <i class="fa fa-circle" style="color: gold;"></i>
           <% end %>
           通知
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to  '#', class:"nav-link" do %>
-          <i class="fas fa-search"></i>
-          検索
         <% end %>
       </li>
       <li class="nav-item">

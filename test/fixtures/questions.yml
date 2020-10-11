@@ -21,6 +21,7 @@ yellow:
 most_recent:
   title: most_recent
   content: My color is rainbow
+  solved: true
   created_at: <%= Time.zone.now %>
   user: take
 

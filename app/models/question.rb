@@ -30,5 +30,4 @@ class Question < ApplicationRecord
 
 
 
-
 end

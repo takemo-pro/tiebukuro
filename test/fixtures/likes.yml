@@ -1,1 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+one:
+  question: blue
+  user: take
+two:
+  question: blue
+  user: edward
+three:
+  question: red
+  user: roy
