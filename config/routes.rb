@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :relationships, only:[:create,:destroy]
   resources :password_resets, only:[:new,:create,:edit,:update]
-  resources :questions do
+  resources :questions, only: [:new,:create,:destroy,:show] do
+    get 'search', on: :collection #検索フォーム
     resources :likes, only:[:create,:destroy]
     resources :comments do
       #質問の解決（solvedフラグの更新につかう

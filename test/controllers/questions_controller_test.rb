@@ -32,4 +32,9 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to root_url
   end
+
+  test "should redirect search when not logged in" do
+    get search_questions_path, params:{search:{text: "hogehoge"}}
+    assert_redirected_to login_url
+  end
 end

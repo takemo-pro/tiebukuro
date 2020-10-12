@@ -4,10 +4,6 @@ class HomePagesController < ApplicationController
     when "likes"
       #いいねじゅんに入れ替えて１００個表示
       questions_part= Question.left_outer_joins(:likes).group('questions.id').select('questions.*, COUNT(likes.*) AS likes_count').distinct.reorder(likes_count: :desc).limit(100)
-
-
-
-
     when "follow"
       #followしているユーザーの質問で1０0件取得
       current_user_id = current_user.id
@@ -30,4 +26,5 @@ class HomePagesController < ApplicationController
   def help
 
   end
+
 end

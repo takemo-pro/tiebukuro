@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :logged_in_user, only:[:new,:show,:create,:edit,:update,:destroy,:solved] #show/index以外（閲覧以外）はログイン強制
+  before_action :logged_in_user
   before_action :correct_user, only: [:destroy,:solved]
   def new
     @user = current_user
@@ -17,23 +17,11 @@ class QuestionsController < ApplicationController
 
   end
 
-  # def edit
-
-  # end
-
-  # def update
-
-  # end
-
   def show
     @question = Question.find(params[:id]) #質問のデータ
     @like = @question.likes.build
     @comments = @question.comments.where(parent: nil) #質問についたコメント(親)
     @new_comment = @question.comments.build
-  end
-
-  def index
-    redirect_to new_question_url
   end
 
   def destroy
@@ -42,8 +30,15 @@ class QuestionsController < ApplicationController
     redirect_to  root_url
   end
 
-  def solved
-
+  def search
+    if params[:search][:text].empty?
+      redirect_to root_url
+      return
+    end
+     @questions = Question.search(params[:search][:text]).page(params[:page]).per(20)
+    if @questions.empty?
+      flash[:info] = "質問が見つかりませんでした"
+    end
   end
 
   private
@@ -51,6 +46,9 @@ class QuestionsController < ApplicationController
       params.require(:question).permit(:title,:content,:image)
     end
 
+    def search_params
+      params.fetch()
+    end
     def correct_user
       @question = current_user.questions.find_by(id: params[:id])
       redirect_to root_url if @question.nil?

@@ -3,6 +3,7 @@ require 'test_helper'
 class QuestionInterfaceTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:take)
+    @question = questions(:red)
   end
 
   test "question interface" do
@@ -28,6 +29,5 @@ class QuestionInterfaceTest < ActionDispatch::IntegrationTest
     assert_select 'a', text:'投稿を削除', count:0
 
   end
-
 
 end

@@ -28,6 +28,9 @@ class Question < ApplicationRecord
     notice.save unless current_user == self.user
   end
 
-
+  def self.search(search) #search文字列を検索して返す
+    return nil unless search
+    Question.where(['title LIKE ?', "%#{search}%"])
+  end
 
 end
