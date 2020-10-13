@@ -1,6 +1,133 @@
 <% set_full_title("Help") %>
-<div class="jumbotron container">
-    <h1 class="display-4">Help</h1>
-
-    
+<div class="jumbotron container mb-0">
+    <h1 class="display-4">HELP</h1>
+    <hr class="my-3">
 </div>
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingtop">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsetop" aria-expanded="false" aria-controls="collapsetop">
+                アプリの使い方
+                </button>
+            </h5>
+            </div>
+            <div id="collapsetop" class="collapse" aria-labelledby="headingtop" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="list-group" id="list-tab" role="tablist">
+                        <a class="list-group-item list-group-item-action active" id="list-1on1-list" data-toggle="list" href="#list-usage1" role="tab" aria-controls="usage1">質問する</a>
+                        <a class="list-group-item list-group-item-action" id="list-solved-list" data-toggle="list" href="#list-usage2" role="tab" aria-controls="usage2">質問に答える</a>
+                        <a class="list-group-item list-group-item-action" id="list-sort-list" data-toggle="list" href="#list-usage3" role="tab" aria-controls="usage3">質問を見る</a>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="list-usage1" role="tabpanel" aria-labelledby="list-usage1-list">どんな内容でも自由に質問してみましょう。解答やいいねがあれば通知されます。</div>
+                            <div class="tab-pane fade" id="list-usage2" role="tabpanel" aria-labelledby="list-usage2-list">誰かの質問に答えてみましょう。未解決の質問でソートすれば困っている人が見つかるかも。</div>
+                            <div class="tab-pane fade" id="list-usage3" role="tabpanel" aria-labelledby="list-usage3-list">気になる質問を探してみましょう。検索機能やソート機能を使って気になる質問を探すことができます。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    どんなアプリ？
+                </button>
+            </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                自分が疑問に思ったことやわからないことについてどんなことでも質問できる「知識のおすそ分け」ができるアプリです。
+            </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                このアプリの特徴は？
+                </button>
+            </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="list-group" id="list-tab" role="tablist">
+                        <a class="list-group-item list-group-item-action active" id="list-1on1-list" data-toggle="list" href="#list-1on1" role="tab" aria-controls="1on1">1対1のQ&A</a>
+                        <a class="list-group-item list-group-item-action" id="list-solved-list" data-toggle="list" href="#list-solved" role="tab" aria-controls="solved">解決策を共有</a>
+                        <a class="list-group-item list-group-item-action" id="list-sort-list" data-toggle="list" href="#list-sort" role="tab" aria-controls="sort">多種のソート機能</a>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="list-1on1" role="tabpanel" aria-labelledby="list-1on1-list">1対1で質問に関して詳しく聞くことができるため、答えが明確です。</div>
+                            <div class="tab-pane fade" id="list-solved" role="tabpanel" aria-labelledby="list-solved-list">どのコメントで解決したのか、明確にわかるため同じ疑問を持つ人の参考になります。</div>
+                            <div class="tab-pane fade" id="list-sort" role="tabpanel" aria-labelledby="list-sort-list">質問のソート機能や検索機能を使って質問を探すことができます。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                使用技術
+                </button>
+            </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body">
+                <ul class="list-group list-group-flush list-style-">
+                    <li class="list-group-item">
+                        <h5 class="lead font-weight-bold">フロントサイド</h5>
+                        <p>+ HTML / CSS / JavaScript(jQuery) / Bootstrap</p>
+                    </li>
+                    <li class="list-group-item">
+                        <h5 class="lead font-weight-bold">サーバーサイド</h5>
+                        <p>+ Ruby / RubyonRails6
+                        <p>+ minitest</p>
+                        <p>+ Webpacker</p>
+                    </li>
+                    <li class="list-group-item">
+                        <h5 class="lead font-weight-bold">インフラ/その他</h5>
+                        <p>+ AWS (EC2 / RDS / S3 / CloudFront / SES / ACM / VPC / Route53 / ELB)</p>
+                        <p>+ CircleCI（自動デプロイ）</p>
+                        <p>+ nginx(Webサーバ) / puma(アプリケーションサーバ)</p>
+                        <span>AWSネットワーク構成図</span>
+                        <%= image_pack_tag "aws_network.png" %>
+                    </li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapselink" aria-expanded="false" aria-controls="collapselink">
+                    リンク
+                </button>
+            </h5>
+            </div>
+
+            <div id="collapselink" class="collapse" aria-labelledby="headinglink" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="list-group list-group-flush">
+                    <a href="https://qiita.com/take_webengineer" class="list-group-item list-group-item-action">制作者Qiitaアカウント</a>
+                    <a href="https://twitter.com/TakeWeb1" class="list-group-item list-group-item-action">制作者Twitterアカウント</a>
+                    <a href="https://github.com/takemo-pro" class="list-group-item list-group-item-action">制作者Githubアカウント</a>
+
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>

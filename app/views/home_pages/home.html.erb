@@ -10,9 +10,10 @@
   <p class="lead">教える・聞く・知る</p>
   <hr class="mr-4">
 
-  <p>ログインしてさっそく質問する</p>
+  <p class="mb-3">ログインしてさっそく質問する</p>
   <%= link_to "アカウント作成" , signup_path , class:"btn btn-primary" %>
   <span>or</span>
   <%= link_to "ログイン", login_path, class:"btn btn-primary" %>
+  <p class="lead mt-3">使い方やアプリに関する情報は<%= link_to "こちら", help_path %></p>
 </div>
 <% end %>

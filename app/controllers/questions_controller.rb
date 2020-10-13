@@ -37,7 +37,7 @@ class QuestionsController < ApplicationController
     end
      @questions = Question.search(params[:search][:text]).page(params[:page]).per(20)
     if @questions.empty?
-      flash[:info] = "質問が見つかりませんでした"
+      flash.now[:info] = "質問が見つかりませんでした"
     end
   end
 
