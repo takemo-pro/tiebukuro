@@ -53,7 +53,7 @@ if RAILS_ENV=="development"
 else
   User.create!(name: 'Grandmatch Admin',
     email: 'Admin.grandmatch@gmail.com',
-    profile: '簡単ログインのアカウントはプロフィール情報を編集できません'
+    profile: '簡単ログインのアカウントはプロフィール情報を編集できません',
     password: 'password',
     password_confirmation: 'password',
     activated: true,
