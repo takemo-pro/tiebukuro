@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Faker::Config.locale = :ja
-if RAILS_ENV=="development"
+if Rails.env =="development"
   #ユーザーの生成
   User.create!(name: 'Grandmatch Admin',
                email: 'Admin.grandmatch@gmail.com',
