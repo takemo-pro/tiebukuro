@@ -8,6 +8,7 @@ gem 'rails-controller-testing'
 gem 'rails-i18n'
 # fake text
 gem 'faker'
+gem 'gimei'
 gem 'bcrypt'
 gem 'pg'
 #aws-ses-sdk

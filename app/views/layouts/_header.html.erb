@@ -11,6 +11,11 @@
     </li>
     <% if logged_in? %>
       <li class="nav-item">
+        <%= link_to new_question_path, class:"nav-link" do %>
+          <span class="fas fa-paper-plane"></span>
+        <% end %>
+      </li>
+      <li class="nav-item">
         <%= link_to current_user, class:"nav-link" do %>
           <span class="far fa-address-card"></span>
         <% end %>

@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Faker::Config.locale = :ja
-if Rails.env =="development"
+if Rails.env =="production"
   #ユーザーの生成
   User.create!(name: 'Grandmatch Admin',
                email: 'Admin.grandmatch@gmail.com',
@@ -58,4 +58,23 @@ else
     password_confirmation: 'password',
     activated: true,
     admin: true)
+    55.times do |n|
+      name = Faker::Name.name
+      email = "fake-#{n}@email.com"
+      password = 'password'
+      address = Gimei.unique.address.kanji
+      User.create!(name: name,
+                   email: email,
+                   profile: address,
+                   password: password,
+                   password_confirmation: password,
+                   activated: true)
+    end
+    users = User.all
+    user  = users.first
+    following = users[2..50]
+    followers = users[3..40]
+    following.each { |followed| user.follow(followed) }
+    followers.each { |follower| follower.follow(user) }
+
 end

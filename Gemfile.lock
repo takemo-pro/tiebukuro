@@ -105,6 +105,8 @@ GEM
     ffi (1.13.1)
     get_process_mem (0.2.7)
       ffi (~> 1.0)
+    gimei (0.5.1)
+      romaji
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.8.5)
@@ -197,6 +199,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (1.8.0)
+    romaji (0.2.4)
+      rake (>= 0.8.0)
     ruby-vips (2.0.17)
       ffi (~> 1.9)
     rubyzip (2.3.0)
@@ -265,6 +269,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   faker
+  gimei
   image_processing (= 1.9.3)
   jbuilder (~> 2.7)
   kaminari
