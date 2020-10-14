@@ -47,7 +47,7 @@
       <% end %>
       <% #返信できないユーザーには表示しない %>
       <% if correct_comment_user?(comment) %>
-        <a href="#" class="icon btn btn-primary d-block text-right ml-3"               data-toggle="collapse" data-target="#new-comment-form-<%= comment.id %>">
+        <a href="#" class="icon btn btn-primary d-block text-right ml-3" data-toggle="collapse" data-target="#new-comment-form-<%= comment.id %>">
         <span class="fas fa-reply"></span> 返信
         </a>
       <% end %>
