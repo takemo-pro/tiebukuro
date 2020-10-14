@@ -9,14 +9,6 @@
         <%= f.text_field :title, class: "form-control",placeholder:"質問のタイトル" %>
         <small class="form-text text-muted">質問の内容が簡潔にわかるタイトルをつけると回答がつきやすくなります</small>
       </div>
-
-      <div class="form-group">
-        <%= f.label :tag, "タグ"%>
-        <%= f.text_field :tag, class: "form-control",placeholder:"タグ" %>
-        <small class="form-text text-muted">タグ付けすることによって回答者が質問をみつけやすくなります</small>
-        <small class="form-text text-muted">半角スペースで区切って入力してください（最大５個まで）</small>
-      </div>
-
       <div class="form-group">
         <%= f.label :image, "添付画像" %>
         <%= f.file_field :image ,class:"form-control-file", accept:"image/jpeg,image/gif,image/png,image/heic,image,tiff" %>
