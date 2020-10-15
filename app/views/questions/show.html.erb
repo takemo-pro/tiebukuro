@@ -18,16 +18,13 @@
     <!-- 主投稿の削除リンク -->
     <div class="d-flex justify-content-end align-items-center">
       <% #いいねボタン %>
-      <div id="like-button" class="d-inline-block">
+      <div id="like-button" class="d-inline-block mr-3">
         <%= render partial:'likes/like' , locals:{question: @question,like:@like} %>
       </div>
       <% if current_user?(@question.user) %>
-        <button id="config-<%= @question.id %>" class="btn  btn-outline-secondary dropdown-toggle ml-3" type="button" data-toggle="dropdown">
-          <span class="fas fa-cog"></span>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="config-<%= @question.id %>">
-          <%= link_to "投稿を削除" , @question, method: :delete, class:"dropdown-item" ,data:{confirm:"この投稿を削除しますか？"} %>
-        </div>
+          <%= link_to @question, method: :delete, class:"btn btn-outline-danger" ,data:{confirm:"この投稿を削除しますか？"} do %>
+            <span class="far fa-trash-alt"></span>
+          <% end %>
       <% end %>
       <% #解決済み質問にはコメント投稿できないようにする %>
       <% unless @question.solved? %>

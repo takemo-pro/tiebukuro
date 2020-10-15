@@ -30,14 +30,9 @@
 
       <% #コメントを削除するリンク %>
       <% if current_user?(comment.user) %>
-        <button id="config-<%= comment.id %>" class="mr-2 btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">
-          <span class="fas fa-cog"></span>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="config-<%= comment.id %>">
-          <%= link_to "コメントを削除" , [comment.question,comment], method: :delete, class:"dropdown-item" ,data:{confirm:"このコメントを削除しますか？"} %>
-
-
-        </div>
+          <%= link_to [comment.question,comment], method: :delete, class:"btn btn-outline-danger mr-3" ,data:{confirm:"このコメントを削除しますか？"} do%>
+            <span class="far fa-trash-alt"></span>
+          <% end %>
       <% end %>
       <% #解決ボタン %>
       <% if current_user?(comment.question.user) && !comment.question.solved? %>
