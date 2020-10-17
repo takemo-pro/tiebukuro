@@ -1,13 +1,13 @@
 <% if current_user.already_liked?(question) %>
   <% #いいね数が0のときはいいね数を表示しない %>
-  <%= button_to question_like_path(question, id: question.likes[0].id), class:"btn btn-primary like", method: :delete , remote:true do %>
-    <span class="fas fa-thumbs-up"></span>
+  <%= button_to question_like_path(question, id: question.likes[0].id), class:"btn btn-raised btn-primary like", method: :delete , remote:true do %>
+    <span class="fas fa-thumbs-up material-icons"></span>
     <% if question.likes.count > 0 %>
       <%= question.likes.count %>
     <% end %>
   <% end %>
 <% else %>
-  <%= button_to question_likes_path(question), class:"btn btn-outline-primary like",method: :post, remote:true do %>
+  <%= button_to question_likes_path(question), class:"btn btn-raised btn-outline-primary like",method: :post, remote:true do %>
     <span class="fas fa-thumbs-up"></span>
     <% if question.likes.count > 0 %>
       <%= question.likes.count %>

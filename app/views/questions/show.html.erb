@@ -17,7 +17,7 @@
     <!-- 主投稿の削除リンク -->
     <div class="d-flex justify-content-end align-items-center">
       <% if current_user?(@question.user) %>
-          <%= link_to @question, method: :delete, class:"btn btn-outline-danger ml-3" ,data:{confirm:"この投稿を削除しますか？"} do %>
+          <%= link_to @question, method: :delete, class:"btn btn-raised btn-outline-danger ml-3" ,data:{confirm:"この投稿を削除しますか？"} do %>
             <span class="far fa-trash-alt"></span>
           <% end %>
       <% end %>
@@ -28,7 +28,7 @@
 
       <% #解決済み質問にはコメント投稿できないようにする %>
       <% unless @question.solved? %>
-        <a href="#" class="icon btn btn-primary btn-large d-block text-right ml-3" data-toggle="collapse" data-target="#new-comment-form-parent-nil-<%=@question.id %>">
+        <a href="#" class="icon btn btn-raised btn-primary btn-large d-block text-right ml-3" data-toggle="collapse" data-target="#new-comment-form-parent-nil-<%=@question.id %>">
           <span class="fas fa-reply"></span> 返信
         </a>
       <% end %>

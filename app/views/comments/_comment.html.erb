@@ -29,19 +29,19 @@
 
       <% #コメントを削除するリンク %>
       <% if current_user?(comment.user) %>
-          <%= link_to [comment.question,comment], method: :delete, class:"btn btn-outline-danger ml-3" ,data:{confirm:"このコメントを削除しますか？"} do%>
+          <%= link_to [comment.question,comment], method: :delete, class:"btn btn-outline-danger btn-raised ml-3" ,data:{confirm:"このコメントを削除しますか？"} do%>
             <span class="far fa-trash-alt"></span>
           <% end %>
       <% end %>
       <% #解決ボタン %>
       <% if current_user?(comment.question.user) && !comment.question.solved? %>
-        <button type="button" class="btn btn-success ml-3" data-toggle="modal" data-target="#modal<%=comment.id%>">
+        <button type="button" class="btn btn-success btn-raised ml-3" data-toggle="modal" data-target="#modal<%=comment.id%>">
           解決!
         </button>
       <% end %>
       <% #返信できないユーザーには表示しない %>
       <% if correct_comment_user?(comment) %>
-        <a href="#" class="icon btn btn-primary d-block text-right ml-3" data-toggle="collapse" data-target="#new-comment-form-<%= comment.id %>">
+        <a href="#" class="icon btn btn-primary btn-raised d-block text-right ml-3" data-toggle="collapse" data-target="#new-comment-form-<%= comment.id %>">
         <span class="fas fa-reply"></span> 返信
         </a>
       <% end %>
@@ -56,7 +56,7 @@
     <% if comment.replies.any? %>
       <% # もしparentが空（質問に対する返信の場合）はコメントの表示非表示ができる　%>
       <% if comment.parent.nil? %>
-        <button class="btn-sm btn btn-outline-primary" data-toggle="collapse" data-target="#replies-<%= comment.id %>" aria-expanded="false">
+        <button class="btn-sm btn btn-raised btn-outline-primary" data-toggle="collapse" data-target="#replies-<%= comment.id %>" aria-expanded="false">
           返信を表示 +
         </button>
         <div class="collapse" id="replies-<%= comment.id %>">
@@ -95,7 +95,7 @@
           </div>
           <%= f.hidden_field :question_id, value: @question.id %>
           <%= f.hidden_field :parent_id, value: comment.id %>
-          <%= f.submit "送信", class:"btn btn-primary" %>
+          <%= f.submit "送信", class:"btn btn-raised btn-primary" %>
         <% end %>
       </div>
 

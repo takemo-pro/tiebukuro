@@ -43,38 +43,38 @@
   </ul>
 <% #ドロップダウンメニュー群 %>
 </div>
-      <div class="navbar-collapse collapse d-md-none" id="collapse">
-        <ul class="navbar-nav mr-auto display-md-none">
-            <li class="nav-item">
-                <%= link_to "ホーム", root_path, class:"nav-link" %>
-            </li>
-            <% if logged_in? %>
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                ユーザー設定
-                </a>
+    <div class="navbar-collapse collapse d-md-none" id="collapse">
+      <ul class="navbar-nav mr-auto display-md-none">
+          <li class="nav-item">
+              <%= link_to "ホーム", root_path, class:"nav-link" %>
+          </li>
+          <% if logged_in? %>
+          <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+              ユーザー設定
+              </a>
 
-                <div class="dropdown-menu">
-                    <%= link_to "ユーザー一覧", followed_users_path, class:"dropdown-item" %>
-                    <%= link_to "プロフィール", current_user, class:"dropdown-item" %>
-                    <%= link_to "プロフィールを編集", edit_user_path(current_user) , class:"dropdown-item" %>
-                    <%= link_to "ログアウト", logout_path , method: :delete,  class:"dropdown-item" %>
-                </div>
+              <div class="dropdown-menu">
+                  <%= link_to "ユーザー一覧", followed_users_path, class:"dropdown-item" %>
+                  <%= link_to "プロフィール", current_user, class:"dropdown-item" %>
+                  <%= link_to "プロフィールを編集", edit_user_path(current_user) , class:"dropdown-item" %>
+                  <%= link_to "ログアウト", logout_path , method: :delete,  class:"dropdown-item" %>
+              </div>
 
-            </li>
-            <% else %>
-            <li class="nav-item">
-                <%= link_to "ログイン", login_path, class:"nav-link" %>
-            </li>
-            <% end %>
-        </ul>
-        <%= form_with(url: search_questions_path(sort: params[:sort]),scope: :search, local: true, class: "form-inline my-2 my-lg-0 d-md-none", method: :get) do |f| %>
-          <%= f.text_field :text, class: "form-control mr-sm-2", placeholder:"質問を探す" %>
-          <%= f.submit "検索", class: "btn btn-outline-success my-2 my-sm-0 search" %>
-        <% end %>
+          </li>
+          <% else %>
+          <li class="nav-item">
+              <%= link_to "ログイン", login_path, class:"nav-link" %>
+          </li>
+          <% end %>
+      </ul>
+      <%= form_with(url: search_questions_path(sort: params[:sort]),scope: :search, local: true, class: "form-inline my-2 my-lg-0 d-md-none", method: :get) do |f| %>
+        <%= f.text_field :text, class: "form-control mr-sm-2", placeholder:"質問を探す" %>
+        <%= f.submit "検索", class: "btn btn-raised btn-outline-success my-2 my-sm-0 search" %>
+      <% end %>
     </div>
     <%= form_with(url: search_questions_path(sort: params[:sort]),scope: :search, local: true, class: "form-inline my-2 my-lg-0 d-none d-lg-block d-md-block", method: :get) do |f| %>
       <%= f.text_field :text, class: "form-control mr-sm-2", placeholder:"質問を探す" %>
-      <%= f.submit "検索", class: "btn btn-outline-success my-2 my-sm-0 search" %>
+      <%= f.submit "検索", class: "btn btn-raised btn-outline-success my-2 my-sm-0 search" %>
     <% end %>
 </header>
