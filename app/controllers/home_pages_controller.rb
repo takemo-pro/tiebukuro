@@ -20,7 +20,7 @@ class HomePagesController < ApplicationController
     question_array = questions_part.each_with_object [] do |question, result|
       result << question
     end
-    @questions = Kaminari.paginate_array(question_array).page(params[:page]).per(20)
+    @questions = Kaminari.paginate_array(question_array).page(params[:page]).per(10)
   end
 
   def help

@@ -1,19 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  content: "takemo 1st comment"
   user: take
   question: red
   parent: nil
 
 two:
-  content: "takemo 2nd comment"
   user: take
   question: red
   parent: one
 
 three:
-  content: "edward 1st comment"
   user: edward
   question: red
   parent: nil

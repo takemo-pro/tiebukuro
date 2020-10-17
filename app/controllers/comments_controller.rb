@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :logged_in_user
-  before_action :correct_user, only:[:update,:destroy]
+  before_action :correct_user, only: :destroy
   before_action :question_user, only: :solved
   before_action :comment_user, only: :create
 
@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
       #とりあえずajaxは使わずリダイレクトで画面を更新する。
       flash[:success] = "コメントを送信しました！"
       redirect_to @comment.question
+
     else
       flash[:danger] = "コメントの送信に失敗しました"
       redirect_to @comment.question
@@ -21,22 +22,22 @@ class CommentsController < ApplicationController
     if @comment.save
       #親コメがあれば親コメもsolved: trueを指定
       while @comment.parent do
-        @comment.parent.update(solved: true)
-        if @comment.parent
-          @comment = @comment.parent
-        else
-          @comment = nil
-        end
+        @comment.parent.update_attribute(:solved,true)
+        @comment = @comment.parent
       end
 
       # 親コメ全てフラグ変えた後は元の質問の解決フラグをtrueにする
-      @comment.question.update(solved: true)
+      @comment.question.update_attribute(:solved,true)
       flash[:success] = "解決しました！"
       #リダイレクトで元質問のshowページへ
       redirect_to @comment.question
 
     elsif @comment.content==nil
-      @comment.parent.update(solved:true)
+      while @comment.parent do
+        @comment.parent.update_attribute(:solved,true)
+        @comment = @comment.parent
+      end
+      @comment.question.update_attribute(:solved,true)
       flash[:success] = "解決しました！"
       redirect_to @comment.question
 
@@ -45,11 +46,6 @@ class CommentsController < ApplicationController
       flash[:danger] = "コメントの送信に失敗しました"
       redirect_to root_url
     end
-
-  end
-
-  def update
-
   end
 
   def destroy
@@ -60,7 +56,7 @@ class CommentsController < ApplicationController
 
   private
     def comment_params
-      params.require(:comment).permit(:content,:image,:question_id,:user_id,:parent_id)
+      params.require(:comment).permit(:content,:question_id,:user_id,:parent_id)
     end
 
     def correct_user
@@ -79,7 +75,6 @@ class CommentsController < ApplicationController
 
     def comment_user #コメントを送るユーザーが正しいか確認
       @comment = current_user.comments.build(comment_params)
-
       #解決済みの質問にはコメントをつけない
       if @comment.question.solved?
         redirect_to root_url

@@ -17,14 +17,12 @@ class CommentInterfaceTest < ActionDispatch::IntegrationTest
     #showページ内に正しい要素が配置されているか
     assert_select 'nav.sidebar'
     assert_select 'h5.lead'
-    assert_match @question.content, response.body
     assert_select 'form'
     #新規コメントを送信してみる
     content = "hogehoge"
     image = fixture_file_upload('test/fixtures/sample_image.jpeg','image/jpeg')
     assert_difference 'Comment.count', 1 do
       post question_comments_path(@question), params:{comment:{content:content,
-                                                               image:image,
                                                                question_id:@question.id}}
     end
     new_comment = assigns(:comment)
@@ -34,8 +32,7 @@ class CommentInterfaceTest < ActionDispatch::IntegrationTest
     #コメントが追加されているか確認
     assert_match content, response.body
     # ️コメントの親子関係が作られるかチェック
-    post question_comments_path(@question), params:{comment:{content:content,
-                                                             image:image,
+    post question_comments_path(@question), params:{comment:{content:image,
                                                              question_id:@question.id,
                                                              parent_id:new_comment.id}}
     # アソシエーションが組まれているか両方からチェック
@@ -47,11 +44,11 @@ class CommentInterfaceTest < ActionDispatch::IntegrationTest
   test "comment solved test" do
     log_in_as(@user)
     post solved_question_comments_path(@question), params:{comment:{content:"hogehoge",question_id:@question.id,parent_id:@parent_comment.id}}
-    assert_redirected_to question_url(@question)
     #作成したコメントを取得
     new_comment = assigns(:comment)
-    assert new_comment.reload.solved?
+    assert new_comment.solved?
     assert @parent_comment.reload.solved?
     assert @question.reload.solved?
+    assert_redirected_to question_url(@question)
   end
 end

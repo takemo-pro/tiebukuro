@@ -1,36 +1,7 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 Faker::Config.locale = :ja
-User.create!(name: 'Grandmatch Admin',
-  email: 'Admin.grandmatch@gmail.com',
-  profile: '簡単ログインのアカウントはプロフィール情報を編集できません',
-  password: 'password',
-  password_confirmation: 'password',
-  activated: true,
-  admin: true)
-  55.times do |n|
-    name = Faker::Name.name
-    email = "fake-#{n}@email.com"
-    password = 'password'
-    address = Gimei.unique.address.kanji
-    User.create!(name: name,
-                  email: email,
-                  profile: address,
-                  password: password,
-                  password_confirmation: password,
-                  activated: true)
-  end
+
 users = User.all
 user  = users.first
-following = users[2..50]
-followers = users[3..40]
-following.each { |followed| user.follow(followed) }
-followers.each { |follower| follower.follow(user) }
 
 question = users[rand(2..15)].questions.create!(title:"ブラインドタッチを習得したいです",
                                   content:"ブラインドタッチを習得したいのですが何かいい練習法はありますか？")

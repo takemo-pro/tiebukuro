@@ -46,7 +46,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test "create should redirect when question solved" do
     log_in_as(@user)
-    @question.update(solved: true)
+    @question.update_attribute(:solved,true)
     assert_no_difference "Comment.count" do
       post question_comments_path(@question), params:{comment:{content:"hogehoge",question_id:@question.id}}
     end

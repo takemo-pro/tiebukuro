@@ -2,25 +2,21 @@
 
 red:
   title: red
-  content: My color is red
   created_at: <%= 10.minutes.ago %>
   user: take
 
 blue:
   title: blue
-  content: My color is blue
   created_at: <%= 3.years.ago %>
   user: take
 
 yellow:
   title: yellow
-  content: My color is yellow
   created_at: <%= 5.hours.ago %>
   user: take
 
 most_recent:
   title: most_recent
-  content: My color is rainbow
   solved: true
   created_at: <%= Time.zone.now %>
   user: take
@@ -28,13 +24,11 @@ most_recent:
 <% 30.times do |n| %>
 question_<%= n %>:
   title: question_<%= n %>
-  content: <%= Faker::Lorem.sentence(word_count:5) %>
   created_at: <%= 50.days.ago %>
   user: take
 <% end %>
 
 non_take:
   title: non_take
-  content: I'm not Take
   created_at: <%= 2.days.ago %>
   user: edward

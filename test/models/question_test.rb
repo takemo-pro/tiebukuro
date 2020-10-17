@@ -30,8 +30,8 @@ class QuestionTest < ActiveSupport::TestCase
     assert_not @question.valid?
   end
 
-  test "content should be less than 2001 characters" do
-    @question.content = "a" * 2001
+  test "content should be less than 10001 characters" do
+    @question.content = "a" * 10001
     assert_not @question.valid?
   end
 

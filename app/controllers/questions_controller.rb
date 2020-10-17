@@ -35,7 +35,7 @@ class QuestionsController < ApplicationController
       redirect_to root_url
       return
     end
-     @questions = Question.search(params[:search][:text]).page(params[:page]).per(20)
+     @questions = Question.search(params[:search][:text]).page(params[:page]).per(10)
     if @questions.empty?
       flash.now[:info] = "質問が見つかりませんでした"
     end
@@ -43,7 +43,7 @@ class QuestionsController < ApplicationController
 
   private
     def question_params
-      params.require(:question).permit(:title,:content,:image)
+      params.require(:question).permit(:title,:content)
     end
 
     def search_params
