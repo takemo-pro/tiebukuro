@@ -1,80 +1,46 @@
-<header class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
-    <%= link_to "Grandmatch", root_path, class:"navbar-brand" %>
-
-<div class="d-md-none p-0 header navbar navbar-expand-md navbar-dark bg-dark">
-<% #ヘッダーアイコン群 %>
+<header class="navbar navbar-dark bg-dark">
+  <div>
+      <%= link_to "Grandmatch", root_path, class:"navbar-brand" %>
+  </div>
   <ul class="nav">
-    <li class="nav-item">
-      <%= link_to root_path, class:"nav-link" do %>
-        <span class="fas fa-home"></span>
-      <% end %>
-    </li>
     <% if logged_in? %>
-      <li class="nav-item">
-        <%= link_to new_question_path, class:"nav-link" do %>
-          <span class="fas fa-paper-plane"></span>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to current_user, class:"nav-link" do %>
-          <span class="far fa-address-card"></span>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to notices_path, class:"nav-link" do %>
-          <i class="far fa-bell"></i>
-          <% if non_check_notice_exist? %>
-            <i class="fa fa-circle" style="color: gold;"></i>
-          <% end %>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to followed_users_path, class:"nav-link" do %>
-          <span class="fas fa-user-friends"></span>
-        <% end %>
-      </li>
-    <% end %>
-    <li class="nav-item">
-      <a href="#" class="nav-link" data-toggle="collapse" data-target="#collapse">
-        <span class="fas fa-cog"></span>
-      </a>
-    </li>
-
-  </ul>
-<% #ドロップダウンメニュー群 %>
-</div>
-    <div class="navbar-collapse collapse d-md-none" id="collapse">
-      <ul class="navbar-nav mr-auto display-md-none">
-          <li class="nav-item">
-              <%= link_to "ホーム", root_path, class:"nav-link" %>
-          </li>
-          <% if logged_in? %>
-          <li class="nav-item dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-              ユーザー設定
-              </a>
-
-              <div class="dropdown-menu">
-                  <%= link_to "ユーザー一覧", followed_users_path, class:"dropdown-item" %>
-                  <%= link_to "プロフィール", current_user, class:"dropdown-item" %>
-                  <%= link_to "プロフィールを編集", edit_user_path(current_user) , class:"dropdown-item" %>
-                  <%= link_to "ログアウト", logout_path , method: :delete,  class:"dropdown-item" %>
-              </div>
-
-          </li>
-          <% else %>
-          <li class="nav-item">
-              <%= link_to "ログイン", login_path, class:"nav-link" %>
-          </li>
-          <% end %>
-      </ul>
-      <%= form_with(url: search_questions_path(sort: params[:sort]),scope: :search, local: true, class: "form-inline my-2 my-lg-0 d-md-none", method: :get) do |f| %>
-        <%= f.text_field :text, class: "form-control mr-sm-2", placeholder:"質問を探す" %>
-        <%= f.submit "検索", class: "btn btn-raised btn-outline-success my-2 my-sm-0 search" %>
+      <%= link_to new_question_path, class:"nav-link d-sm-inline-block d-md-none" do %>
+        <i class="fas fa-paper-plane text-white"></i>
       <% end %>
-    </div>
-    <%= form_with(url: search_questions_path(sort: params[:sort]),scope: :search, local: true, class: "form-inline my-2 my-lg-0 d-none d-lg-block d-md-block", method: :get) do |f| %>
-      <%= f.text_field :text, class: "form-control mr-sm-2", placeholder:"質問を探す" %>
-      <%= f.submit "検索", class: "btn btn-raised btn-outline-success my-2 my-sm-0 search" %>
+    <% end%>
+    <%= link_to root_path, class:"nav-link d-sm-inline-block d-md-none" do %>
+      <i class="fas fa-home text-white"></i>
     <% end %>
+    <% if logged_in? %>
+      <%= link_to user_path(current_user) ,class:"nav-link d-sm-inline-block d-md-none" do %>
+        <i class="far fa-address-card text-white"></i>
+      <% end %>
+      <%= link_to followed_users_path, class:"nav-link d-sm-inline-block d-md-none" do %>
+        <i class="fas fa-user-friends text-white"></i>
+      <% end %>
+      <%= link_to notices_path, class:"nav-link d-sm-inline-block d-md-none" do %>
+        <i class="far fa-bell text-white"></i>
+        <% if non_check_notice_exist? %>
+          <i class="fa fa-circle" style="color: gold;"></i>
+        <% end %>
+      <% end %>
+      <%= link_to logout_path, method: :delete, class:"nav-link d-sm-inline-block d-md-none" do %>
+        <i class="fas fa-sign-out-alt text-white"></i>
+      <% end %>
+      <a class="nav-link d-sm-inline-block d-md-none" data-toggle="collapse" data-target="#collapse-search" aria-expanded="false" aria-controls="collapse-search">
+        <i class="fas fa-search text-white"></i>
+      </a>
+
+    <% end %>
+  </ul>
+      <div class="collapse" id="collapse-search">
+        <%= form_with(url: search_questions_path(sort: params[:sort]),scope: :search, local: true, id: "collapse-search", class: "form-inline d-flex d-sm-block d-lg-none d-md-none collapse", method: :get) do |f| %>
+          <%= f.text_field :text, class: "form-control d-inline mr-sm-2", placeholder:"質問を探す" %>
+          <%= f.submit "検索", class: "btn float-right btn-raised btn-outline-success my-2 my-sm-0 search" %>
+        <% end %>
+      </div>
+  <%= form_with(url: search_questions_path(sort: params[:sort]),scope: :search, local: true,class: "form-inline d-none d-md-inline-block", method: :get) do |f| %>
+    <%= f.text_field :text, class: "form-control d-inline mr-sm-2", placeholder:"質問を探す" %>
+    <%= f.submit "検索", class: "btn float-right btn-raised btn-outline-success my-2 my-sm-0 search" %>
+  <% end %>
 </header>

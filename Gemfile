@@ -8,6 +8,7 @@ gem 'rails-controller-testing'
 gem 'rails-i18n'
 # fake text
 gem 'faker'
+gem 'sprockets' , '~> 3.7.2'
 gem 'gimei'
 gem 'bcrypt'
 gem 'pg'
