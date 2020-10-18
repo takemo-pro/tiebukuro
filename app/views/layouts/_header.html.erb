@@ -1,46 +1,49 @@
-<header class="navbar navbar-dark bg-dark ">
-  <div>
-      <%= link_to "Grandmatch", root_path, class:"navbar-brand" %>
-  </div>
-  <ul class="nav">
-    <% if logged_in? %>
-      <%= link_to new_question_path, class:"nav-link d-sm-inline-block d-md-none" do %>
-        <i class="fas fa-paper-plane text-white"></i>
-      <% end %>
-    <% end%>
-    <%= link_to root_path, class:"nav-link d-sm-inline-block d-md-none" do %>
-      <i class="fas fa-home text-white"></i>
-    <% end %>
-    <% if logged_in? %>
-      <%= link_to user_path(current_user) ,class:"nav-link d-sm-inline-block d-md-none" do %>
-        <i class="far fa-address-card text-white"></i>
-      <% end %>
-      <%= link_to followed_users_path, class:"nav-link d-sm-inline-block d-md-none" do %>
-        <i class="fas fa-user-friends text-white"></i>
-      <% end %>
-      <%= link_to notices_path, class:"nav-link d-sm-inline-block d-md-none" do %>
-        <i class="far fa-bell text-white"></i>
-        <% if non_check_notice_exist? %>
-          <i class="fa fa-circle" style="color: gold;"></i>
+<header>
+  <div class="navbar navbar-dark bg-dark">
+    <div>
+        <%= link_to "Grandmatch", root_path, class:"navbar-brand" %>
+    </div>
+    <ul class="nav">
+      <% if logged_in? %>
+        <%= link_to new_question_path, class:"nav-link d-sm-inline-block d-md-none" do %>
+          <i class="fas fa-paper-plane text-white"></i>
         <% end %>
+      <% end%>
+      <%= link_to root_path, class:"nav-link d-sm-inline-block d-md-none" do %>
+        <i class="fas fa-home text-white"></i>
       <% end %>
-      <%= link_to logout_path, method: :delete, class:"nav-link d-sm-inline-block d-md-none" do %>
-        <i class="fas fa-sign-out-alt text-white"></i>
-      <% end %>
-      <a class="nav-link d-sm-inline-block d-md-none" data-toggle="collapse" data-target="#collapse-search" aria-expanded="false" aria-controls="collapse-search">
-        <i class="fas fa-search text-white"></i>
-      </a>
+      <% if logged_in? %>
+        <%= link_to user_path(current_user) ,class:"nav-link d-sm-inline-block d-md-none" do %>
+          <i class="far fa-address-card text-white"></i>
+        <% end %>
+        <%= link_to followed_users_path, class:"nav-link d-sm-inline-block d-md-none" do %>
+          <i class="fas fa-user-friends text-white"></i>
+        <% end %>
+        <%= link_to notices_path, class:"nav-link d-sm-inline-block d-md-none" do %>
+          <i class="far fa-bell text-white"></i>
+          <% if non_check_notice_exist? %>
+            <i class="fa fa-circle" style="color: gold;"></i>
+          <% end %>
+        <% end %>
+        <%= link_to logout_path, method: :delete, class:"nav-link d-sm-inline-block d-md-none" do %>
+          <i class="fas fa-sign-out-alt text-white"></i>
+        <% end %>
+        <a class="nav-link d-sm-inline-block d-md-none" data-toggle="collapse" data-target="#collapse-search" aria-expanded="false" aria-controls="collapse-search">
+          <i class="fas fa-search text-white"></i>
+        </a>
 
+      <% end %>
+    </ul>
+        <div class="collapse" id="collapse-search">
+          <%= form_with(url: search_questions_path(sort: params[:sort]),scope: :search, local: true, id: "collapse-search", class: "form-inline d-flex d-sm-block d-lg-none d-md-none collapse", method: :get) do |f| %>
+            <%= f.text_field :text, class: "form-control d-inline mr-sm-2", placeholder:"質問を探す" %>
+            <%= f.submit "検索", class: "btn float-right btn-raised btn-outline-success my-2 my-sm-0 search" %>
+          <% end %>
+        </div>
+    <%= form_with(url: search_questions_path(sort: params[:sort]),scope: :search, local: true,class: "form-inline d-none d-md-inline-block", method: :get) do |f| %>
+      <%= f.text_field :text, class: "form-control d-inline mr-sm-2", placeholder:"質問を探す" %>
+      <%= f.submit "検索", class: "btn float-right btn-raised btn-outline-success my-2 my-sm-0 search" %>
     <% end %>
-  </ul>
-      <div class="collapse" id="collapse-search">
-        <%= form_with(url: search_questions_path(sort: params[:sort]),scope: :search, local: true, id: "collapse-search", class: "form-inline d-flex d-sm-block d-lg-none d-md-none collapse", method: :get) do |f| %>
-          <%= f.text_field :text, class: "form-control d-inline mr-sm-2", placeholder:"質問を探す" %>
-          <%= f.submit "検索", class: "btn float-right btn-raised btn-outline-success my-2 my-sm-0 search" %>
-        <% end %>
-      </div>
-  <%= form_with(url: search_questions_path(sort: params[:sort]),scope: :search, local: true,class: "form-inline d-none d-md-inline-block", method: :get) do |f| %>
-    <%= f.text_field :text, class: "form-control d-inline mr-sm-2", placeholder:"質問を探す" %>
-    <%= f.submit "検索", class: "btn float-right btn-raised btn-outline-success my-2 my-sm-0 search" %>
-  <% end %>
+
+  </div>
 </header>
