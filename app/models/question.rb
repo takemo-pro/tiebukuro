@@ -6,6 +6,7 @@ class Question < ApplicationRecord
   has_many :notices, dependent: :destroy
   has_one_attached :image
   has_rich_text :content
+  acts_as_taggable
   default_scope -> {order(created_at: :desc)}
   validates :user_id, presence: true
   validates :content, presence: true, length: {maximum: 10000}

@@ -2,22 +2,32 @@
   <div>
     <%= link_to get_gravatar_img(question.user, size: 50), question.user ,class:"d-inline" %>
   </div>
-      <div class="w-100">
-        <span class="user"><%= link_to question.user.name, question.user %></span>
-        <%= link_to question, id:"#{question.id}-link" do %>
-          <span class="content d-block">
-            <% if question.solved? %>
-              <span class="badge badge-success font-weight-normal">解決済!</span>
+      <div class="w-100 row">
+        <div class="col-10">
+          <span class="user"><%= link_to question.user.name, question.user %></span>
+          <%= link_to question, id:"#{question.id}-link" do %>
+            <span class="content d-block">
+              <% if question.solved? %>
+                <span class="badge badge-success font-weight-normal">解決済!</span>
+              <% end %>
+              <p class="m-0 lead"><%= question.title %></p>
+            </span>
+            <span class="timestamp">
+              <%= time_ago_in_words(question.created_at) %>前
+            </span>
+            <% question.tag_list.each do |tag| %>
+              <%= link_to tag, search_questions_path(tag_name: tag), class:"text-white badge badge-info" %>
             <% end %>
-            <p class="m-0 lead"><%= question.title %></p>
-          </span>
-          <span class="timestamp">
-            <%= time_ago_in_words(question.created_at) %>前
-          </span>
-        <% end %>
-        <% if current_user?(question.user) %>
-          <%= link_to "投稿を削除" , question, method: :delete, class:"badge badge-danger font-weight-normal text-light ml-auto" ,data:{confirm:"この投稿を削除しますか？"} %>
-        <% end %>
+          <% end %>
+        </div>
+
+        <div class="col-2 d-flex justify-content-center align-items-center">
+          <% if current_user?(question.user) %>
+            <%= link_to question, method: :delete, class:"m-0 btn btn-outline-danger font-weight-normal text-light" ,data:{confirm:"この投稿を削除しますか？"} do %>
+              <span class="far fa-trash-alt text-danger"></span>
+            <% end %>
+          <% end %>
+        </div>
       </div>
 </li>
-<hr>
+<hr class="mb-1 mt-0">

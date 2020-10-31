@@ -12,6 +12,9 @@
       <% end %>
       <%= @question.title %>
     </h5>
+    <% @question.tag_list.each do |tag| %>
+      <%= link_to tag, search_questions_path(tag_name: tag), class:"text-white badge badge-info" %>
+    <% end %>
     <hr>
     <p><%= @question.content %></p>
     <!-- 主投稿の削除リンク -->

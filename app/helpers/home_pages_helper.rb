@@ -8,7 +8,11 @@ module HomePagesHelper
     when "nonsolved" then
       text = "未解決の質問"
     else
-      text = "新規投稿順の質問"
+      unless params[:tag_name].nil?
+        text = "「#{params[:tag_name]}」タグの投稿"
+      else
+        text = "新規投稿順の投稿"
+      end
     end
 
   end

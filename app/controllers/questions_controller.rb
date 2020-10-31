@@ -31,19 +31,23 @@ class QuestionsController < ApplicationController
   end
 
   def search
-    if params[:search][:text].empty?
-      redirect_to root_url
-      return
-    end
-     @questions = Question.search(params[:search][:text]).page(params[:page]).per(10)
-    if @questions.empty?
-      flash.now[:info] = "質問が見つかりませんでした"
+    if params[:tag_name].nil?
+      if params[:search][:text].empty?
+        redirect_to root_url
+        return
+      end
+       @questions = Question.search(params[:search][:text]).page(params[:page]).per(10)
+      if @questions.empty?
+        flash.now[:info] = "質問が見つかりませんでした"
+      end
+    else
+      @questions = Question.tagged_with(params[:tag_name]).page(params[:page]).per(10)
     end
   end
 
   private
     def question_params
-      params.require(:question).permit(:title,:content)
+      params.require(:question).permit(:title,:content,:tag_list)
     end
 
     def search_params
