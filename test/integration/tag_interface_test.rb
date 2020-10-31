@@ -14,7 +14,6 @@ class TagInterfaceTest < ActionDispatch::IntegrationTest
                                              content:"hogehogehogehoge"}}
     end
     post_question = assigns(:question)
-    p post_question
     assert_redirected_to user_url(@user)
     tags.each do |tag|
       get search_questions_path(tag_name: tag)
